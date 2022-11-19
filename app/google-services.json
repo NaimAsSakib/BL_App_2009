@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "202493470148",
+    "project_id": "bl-app-2009",
+    "storage_bucket": "bl-app-2009.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202493470148:android:4e96af96ffd548d5193091",
+        "android_client_info": {
+          "package_name": "com.example.blapp2009"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202493470148-vagkqlfa55m48tec5tssu285s6se0u5t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ0k3lrMTRACVjPdgM4xDDWUOE1gjdczY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202493470148-vagkqlfa55m48tec5tssu285s6se0u5t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

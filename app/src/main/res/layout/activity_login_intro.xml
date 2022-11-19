@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginIntro">
+
+    <ImageView
+        android:id="@+id/ivLoginIntro"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_undraw_friendship_mni7__1_"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv1_LoginIntro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome BL 09 Batch!!"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:textColor="#536DFE"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/ivLoginIntro"
+        app:layout_constraintStart_toStartOf="@id/ivLoginIntro"
+        app:layout_constraintEnd_toEndOf="@id/ivLoginIntro"/>
+
+    <TextView
+        android:id="@+id/tv1_LoginIntro2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This application is only for the students of \n  SSC 2009 batch of B.L. Govt High School"
+        android:layout_marginTop="15dp"
+        android:textColor="#536DFE"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/tv1_LoginIntro"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnGetStarted"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#00B0FF"
+        android:text="     Get Started    "
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv1_LoginIntro2"
+        app:layout_constraintStart_toStartOf="@id/tv1_LoginIntro2"
+        app:layout_constraintEnd_toEndOf="@id/tv1_LoginIntro2"/>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:src="@drawable/ic_wave"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
