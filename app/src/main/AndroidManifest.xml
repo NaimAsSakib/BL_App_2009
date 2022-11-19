@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BLApp2009">
         <activity
+            android:name=".RegisterProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".LandingActivity"
             android:exported="false" />
         <!--
