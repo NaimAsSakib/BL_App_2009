@@ -21,24 +21,19 @@ class LoginIntro : AppCompatActivity() {
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         btnGetStarted=findViewById(R.id.btnGetStarted)
 
-        if (auth.currentUser!=null){
-            Toast.makeText(this,"You are already logged in! ", Toast.LENGTH_SHORT).show()
-            //directing to landing activity for successful login
-            val intent= Intent(this, LandingActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
+        //If user logging in for the first time
         btnGetStarted.setOnClickListener {
             val intent= Intent(this, Login::class.java)
             startActivity(intent)
             finish()
         }
-
+        //Checking with firebase builtin feature if user is already logged in or not!! , condition working as shared pref
+        if (auth.currentUser!=null){
+            Toast.makeText(this,"You are already logged in! ", Toast.LENGTH_SHORT).show()
+            //directing to landing activity as user is already logged in
+            val intent= Intent(this, LandingActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
-
-    /*private fun redirect(name: String){
-
-    }*/
-
 }
