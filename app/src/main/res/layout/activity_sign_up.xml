@@ -88,6 +88,7 @@
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="#141c44"
+            app:endIconMode="password_toggle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail">
 
@@ -119,6 +120,7 @@
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="#141c44"
+            app:endIconMode="password_toggle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutSignUpPassword">
 
