@@ -1,8 +1,10 @@
 package com.example.blapp2009
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import com.example.blapp2009.databinding.ActivityRegisterProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -11,20 +13,45 @@ import com.google.firebase.database.FirebaseDatabase
 class RegisterProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterProfileBinding
-    private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       // setContentView(R.layout.activity_register_profile)
+        //viewBinding() functionality
+       // setContentView(R.layout.activity_register_profile) //muted this for viewBinding() functionality
         binding= ActivityRegisterProfileBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
-        auth= FirebaseAuth.getInstance()
-        val uid= auth.currentUser?.uid
+        binding.btnUpdate.setOnClickListener {
+            val name= binding.etRegisterName.text.toString()
+            val location= binding.etRegisterLocation.text.toString()
+            val occupation= binding.etRegisterOccupation.text.toString()
+            val organization= binding.etRegisterOrganization.text.toString()
+            val number1= binding.etRegisterMobile1.text.toString()
+            val number2= binding.etRegisterMobile2.text.toString()
 
+            databaseReference=FirebaseDatabase.getInstance().getReference("Users")
+            val user=User(name, location, occupation, organization, number1, number2)
+            databaseReference.child(name).setValue(user).addOnSuccessListener {
 
-        databaseReference=FirebaseDatabase.getInstance().getReference("")
+                binding.etRegisterName.text.clear()
+                binding.etRegisterLocation.text.clear()
+                binding.etRegisterOccupation.text.clear()
+                binding.etRegisterOrganization.text.clear()
+                binding.etRegisterMobile1.text.clear()
+                binding.etRegisterMobile2.text.clear()
+
+                Toast.makeText(this, "Successfully saved to database", Toast.LENGTH_SHORT).show()
+
+                val intent= Intent(this, LandingActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            }.addOnFailureListener {
+                Toast.makeText(this, "Failed to save data to database", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
     }
 }

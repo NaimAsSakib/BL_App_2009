@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/drawable/ic_baseline_filter.xml" value="0.1425" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/drawable/ic_undraw_friendship_mni7__1_.xml" value="0.1425" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_landing.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_login_intro.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_register_profile.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_sign_up.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/navigation_drawer_layout.xml" value="0.2421875" />
       </map>
     </option>
   </component>

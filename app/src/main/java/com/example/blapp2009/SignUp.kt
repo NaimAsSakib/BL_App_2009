@@ -66,7 +66,8 @@ class SignUp : AppCompatActivity() {
                 if(it.isSuccessful){
                     Toast.makeText(this,"Login Successful", Toast.LENGTH_SHORT).show()
                     //directing to landing activity for successful login
-                    val intent= Intent(this, LandingActivity::class.java)
+                    //val intent= Intent(this, LandingActivity::class.java)
+                    val intent= Intent(this, RegisterProfileActivity::class.java)
                     startActivity(intent)
                     finish()
 
