@@ -33,6 +33,11 @@
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="#141c44"
+
+            app:helperText="Required*"
+            app:helperTextTextColor="#ff726f"
+            app:endIconMode="clear_text"
+
             app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toTopOf="parent">
 
@@ -54,7 +59,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:hint="Enter District"
+            android:hint="Enter District/City"
 
             app:boxCornerRadiusBottomEnd="6dp"
             app:boxCornerRadiusBottomStart="6dp"
@@ -64,6 +69,7 @@
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="#141c44"
+            app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutName">
 
@@ -85,7 +91,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:hint="Current Occupation(Job/Business)"
+            android:hint="Occupation(Job/Business)"
 
             app:boxCornerRadiusBottomEnd="6dp"
             app:boxCornerRadiusBottomStart="6dp"
@@ -95,6 +101,7 @@
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="#141c44"
+            app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutLocation">
 
@@ -116,7 +123,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            android:hint="Current Organization"
+            android:hint="Organization(if any)"
 
             app:boxCornerRadiusBottomEnd="6dp"
             app:boxCornerRadiusBottomStart="6dp"
@@ -126,6 +133,7 @@
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="#141c44"
+            app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutOccupation">
 
@@ -157,6 +165,7 @@
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="#141c44"
+            app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutOrganization">
 
@@ -164,7 +173,7 @@
                 android:id="@+id/etRegisterMobile1"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="1.5dp"
                 android:textStyle="bold" />
 
@@ -188,6 +197,7 @@
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="#141c44"
+            app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutMobile1">
 
@@ -195,7 +205,7 @@
                 android:id="@+id/etRegisterMobile2"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="1.5dp"
                 android:textStyle="bold" />
 
@@ -208,6 +218,7 @@
             android:layout_marginTop="20dp"
             android:background="#00B0FF"
             android:text="     Update    "
+            android:visibility="invisible"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"

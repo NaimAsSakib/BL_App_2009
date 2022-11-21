@@ -4,7 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
+import androidx.core.text.trimmedLength
+import androidx.core.widget.doOnTextChanged
 import com.example.blapp2009.databinding.ActivityRegisterProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -14,6 +17,7 @@ class RegisterProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterProfileBinding
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var name: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +26,18 @@ class RegisterProfileActivity : AppCompatActivity() {
         binding= ActivityRegisterProfileBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
+        //Checking whether user entered an name or not & controlling button visibility accordingly
+        binding.etRegisterName.doOnTextChanged { text, start, before, count ->
+            if (text.toString().trimmedLength()>0){
+                binding.btnUpdate.visibility=View.VISIBLE
+                name= binding.etRegisterName.text.toString()
+            }else{
+                binding.btnUpdate.visibility=View.INVISIBLE
+            }
+        }
+
         binding.btnUpdate.setOnClickListener {
-            val name= binding.etRegisterName.text.toString()
+            //val name= binding.etRegisterName.text.toString()
             val location= binding.etRegisterLocation.text.toString()
             val occupation= binding.etRegisterOccupation.text.toString()
             val organization= binding.etRegisterOrganization.text.toString()
