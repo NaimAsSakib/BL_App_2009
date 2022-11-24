@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
@@ -26,6 +27,7 @@ class LandingActivity : AppCompatActivity() {
     private lateinit var consLayoutLogout: ConstraintLayout
 
     //recyclerview data from firebase database
+    private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<User>
@@ -62,6 +64,7 @@ class LandingActivity : AppCompatActivity() {
 
 
         consLayoutEditProfile.setOnClickListener {
+
             drawerLayout.closeDrawer(GravityCompat.START)
         }
 
@@ -94,6 +97,7 @@ class LandingActivity : AppCompatActivity() {
     private fun getUserData(){
         databaseReference=FirebaseDatabase.getInstance().getReference("Users")
 
+
         databaseReference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
@@ -101,10 +105,12 @@ class LandingActivity : AppCompatActivity() {
 
                         val user=userSnapshot.getValue(User::class.java)
                         userArrayList.add(user!!)
-                        Log.e("Landing act"," name "+userArrayList.size)
+
 
                     }
                     recyclerView.adapter=LandingActRCVAdapter(userArrayList)
+
+                    Log.e("Landing act"," arrayList size "+userArrayList.size)
                 }
             }
 
