@@ -33,12 +33,14 @@ class LandingActivity : AppCompatActivity() {
 
          setContentView(R.layout.activity_landing)
 
+        //recyclerView purpose
         recyclerView=findViewById(R.id.rcvLandingAct)
         recyclerView.layoutManager=LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
+        //Fetching registered user data from firebase realtime database
         userArrayList= arrayListOf<User>()
-        getUserData()
+        getUserData()  //method described bottom of the activity
 
 
         //Navigation Drawer purpose
@@ -47,7 +49,6 @@ class LandingActivity : AppCompatActivity() {
         consLayoutSearch=findViewById(R.id.consFilter)
         consLayoutNotification=findViewById(R.id.consNotification)
         consLayoutLogout=findViewById(R.id.consLogout)
-
 
         ivHamburger=findViewById(R.id.ivHamburger)
         drawerLayout=findViewById(R.id.drawerLayout)
@@ -83,6 +84,7 @@ class LandingActivity : AppCompatActivity() {
 
     }
 
+    //method for fetching registered user data from firebase realtime database
     private fun getUserData(){
         databaseReference=FirebaseDatabase.getInstance().getReference("Users")
 
@@ -108,6 +110,7 @@ class LandingActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        //Navigation drawer open & close purpose
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
