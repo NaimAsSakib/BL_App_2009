@@ -27,7 +27,6 @@ class LandingActivity : AppCompatActivity() {
     private lateinit var consLayoutLogout: ConstraintLayout
 
     //recyclerview data from firebase database
-    private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<User>
