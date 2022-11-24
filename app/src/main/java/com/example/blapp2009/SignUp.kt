@@ -20,7 +20,7 @@ class SignUp : AppCompatActivity() {
     private lateinit var btnApply: Button
     private lateinit var btnForLoginAct: TextView
 
-    lateinit var firebaseAuth: FirebaseAuth
+    lateinit var firebaseAuth: FirebaseAuth  //firebase authentication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +32,10 @@ class SignUp : AppCompatActivity() {
         btnApply=findViewById(R.id.btnSignUp)
         btnForLoginAct=findViewById(R.id.tv3_SignUp)
 
-        firebaseAuth= FirebaseAuth.getInstance()
+        firebaseAuth= FirebaseAuth.getInstance()  //firebase authentication
 
         btnApply.setOnClickListener {
-            signUpUser()
+            signUpUser()  //method described bottom of this activity
         }
 
         btnForLoginAct.setOnClickListener {
@@ -50,11 +50,13 @@ class SignUp : AppCompatActivity() {
         val password:String = etPassword.text.toString()
         val confirmPassword:String = etConfirmPass.text.toString()
 
+        //checking for blank field
         if(email.trimmedLength() == 0 || password.trimmedLength()== 0 || confirmPassword.trimmedLength() == 0){
             Toast.makeText(this,"Email & Password can't be blank", Toast.LENGTH_SHORT).show()
             return
         }
 
+        //matching password with confirm password
         if(password != confirmPassword){
             Toast.makeText(this,"Password didn't match with confirm password", Toast.LENGTH_SHORT).show()
             return
@@ -64,9 +66,10 @@ class SignUp : AppCompatActivity() {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this){
                 if(it.isSuccessful){
-                    Toast.makeText(this,"Login Successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Sign Up Successful", Toast.LENGTH_SHORT).show()
                     //directing to landing activity for successful login
                     //val intent= Intent(this, LandingActivity::class.java)
+                    //directing to RegisterProfile activity for successful login
                     val intent= Intent(this, RegisterProfileActivity::class.java)
                     startActivity(intent)
                     finish()

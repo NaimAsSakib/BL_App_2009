@@ -16,7 +16,7 @@ class Login : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var btnSignUp: TextView
 
-    lateinit var firebaseAuth: FirebaseAuth
+    lateinit var firebaseAuth: FirebaseAuth  //firebase authentication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +27,10 @@ class Login : AppCompatActivity() {
         btnLogin=findViewById(R.id.btnLogin)
         btnSignUp=findViewById(R.id.tv4_Login)
 
-        firebaseAuth= FirebaseAuth.getInstance()
+        firebaseAuth= FirebaseAuth.getInstance()  //firebase authentication
 
         btnLogin.setOnClickListener {
-            login()
+            login()  //method is described bottom of this activity
         }
 
         btnSignUp.setOnClickListener {
@@ -50,8 +50,7 @@ class Login : AppCompatActivity() {
         }
 
         //code register user
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-            .addOnCompleteListener(this){
+        firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
                 if(it.isSuccessful){
 
                     Toast.makeText(this,"Login Successful", Toast.LENGTH_SHORT).show()

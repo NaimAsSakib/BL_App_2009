@@ -27,7 +27,7 @@ class LoginIntro : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-        //Checking with firebase built in feature if user is already logged in or not!! , condition working as shared pref
+        //Checking with firebase built in feature if user is already logged in or not!! , condition working like shared pref
         if (auth.currentUser!=null){
             Toast.makeText(this,"You are already logged in! ", Toast.LENGTH_SHORT).show()
             //directing to landing activity as user is already logged in
