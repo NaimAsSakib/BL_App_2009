@@ -39,16 +39,18 @@ class RegisterProfileActivity : AppCompatActivity() {
         binding.btnUpdate.setOnClickListener {
             //val name= binding.etRegisterName.text.toString()
             val location= binding.etRegisterLocation.text.toString()
+            val bloodgroup:String = binding.etRegisterBloodGroup.text.toString()
             val occupation= binding.etRegisterOccupation.text.toString()
             val organization= binding.etRegisterOrganization.text.toString()
             val number1= binding.etRegisterMobile1.text.toString()
             val number2= binding.etRegisterMobile2.text.toString()
 
             databaseReference=FirebaseDatabase.getInstance().getReference("Users")
-            val user=User(name, location, occupation, organization, number1, number2)
+            val user=User(name, bloodgroup, location, occupation, organization, number1, number2)
             databaseReference.child(name).setValue(user).addOnSuccessListener {
 
                 binding.etRegisterName.text.clear()
+                binding.etRegisterBloodGroup.text.clear()
                 binding.etRegisterLocation.text.clear()
                 binding.etRegisterOccupation.text.clear()
                 binding.etRegisterOrganization.text.clear()

@@ -52,6 +52,42 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutBloodGroup"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="Enter Bloodgroup"
+
+            app:boxCornerRadiusBottomEnd="6dp"
+            app:boxCornerRadiusBottomStart="6dp"
+            app:boxCornerRadiusTopEnd="6dp"
+            app:boxCornerRadiusTopStart="6dp"
+
+            app:boxStrokeColor="#536DFE"
+            app:boxStrokeWidth="2dp"
+            app:hintTextColor="#141c44"
+
+            app:helperText="Required*"
+            app:helperTextTextColor="#ff726f"
+            app:endIconMode="clear_text"
+
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutName"
+            app:layout_constraintStart_toStartOf="@id/textInputLayoutName">
+
+            <EditText
+                android:id="@+id/etRegisterBloodGroup"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:inputType="text"
+                android:padding="1.5dp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayoutLocation"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -71,7 +107,7 @@
             app:hintTextColor="#141c44"
             app:endIconMode="clear_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutName">
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutBloodGroup">
 
             <EditText
                 android:id="@+id/etRegisterLocation"
