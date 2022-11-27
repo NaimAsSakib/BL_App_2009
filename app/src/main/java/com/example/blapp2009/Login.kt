@@ -54,6 +54,8 @@ class Login : AppCompatActivity() {
         //code register user
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
                 if(it.isSuccessful){
+
+                    //getting userId from authentication and saving in shared preference
                     val currentUserId= firebaseAuth.currentUser?.uid!!
                     Log.e("uid login","user id "+currentUserId)
                     val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)

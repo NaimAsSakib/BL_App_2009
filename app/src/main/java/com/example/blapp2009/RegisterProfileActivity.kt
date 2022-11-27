@@ -39,6 +39,8 @@ class RegisterProfileActivity : AppCompatActivity() {
         }*/
 
         binding.btnUpdate.setOnClickListener {
+
+            //getting userId from shared preference saved in Login act
             val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
             val userId= sharedPreference.getString("userid","defaultName")
             Log.e(" passed userid", "userid "+userId)
