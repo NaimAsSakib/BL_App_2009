@@ -43,7 +43,7 @@ class RegisterProfileActivity : AppCompatActivity() {
             val userId= sharedPreference.getString("userid","defaultName")
             Log.e(" passed userid", "userid "+userId)
 
-            val name= binding.etRegisterName.text.toString()
+            name= binding.etRegisterName.text.toString()
             val location= binding.etRegisterLocation.text.toString()
             val bloodgroup:String = binding.etRegisterBloodGroup.text.toString()
             val occupation= binding.etRegisterOccupation.text.toString()

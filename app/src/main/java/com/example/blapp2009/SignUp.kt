@@ -25,6 +25,7 @@ class SignUp : AppCompatActivity() {
 
     lateinit var firebaseAuth: FirebaseAuth  //firebase authentication
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var name:String //global variable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +55,7 @@ class SignUp : AppCompatActivity() {
         val email:String = etEmail.text.toString()
         val password:String = etPassword.text.toString()
         val confirmPassword:String = etConfirmPass.text.toString()
-        val name:String = etName.text.toString()
+        name = etName.text.toString()
 
         //checking for blank field
         if(email.trimmedLength() == 0 || password.trimmedLength()== 0 || confirmPassword.trimmedLength() == 0 || name.isBlank()){
@@ -73,28 +74,14 @@ class SignUp : AppCompatActivity() {
             .addOnCompleteListener(this){
                 if(it.isSuccessful){
 
-                    val location=""
-                    val bloodgroup= "N/A"
-                    val occupation= ""
-                    val organization= ""
-                    val number1= ""
-                    val number2= ""
-
-                    val userId= firebaseAuth.currentUser?.uid!!
-                    Log.e("uid sign up","user id "+userId)
-
-                    databaseReference= FirebaseDatabase.getInstance().getReference("Users")
-                    val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2)
-                    databaseReference.child(userId).setValue(user).addOnSuccessListener {
-
-                    }
+                    //method for uploading creating a user in realtime database with a reference of userID got from authentication
+                    uploadDataToRealtimeDB()
 
                     Toast.makeText(this,"Sign Up Successful", Toast.LENGTH_SHORT).show()
                     //directing to landing activity for successful login
                     //val intent= Intent(this, LandingActivity::class.java)
-                    //directing to RegisterProfile activity for successful login
+                    //directing to Login activity for successful login
                     val intent= Intent(this, Login::class.java)
-                    intent.putExtra("userid",userId)
                     startActivity(intent)
                     finish()
 
@@ -103,5 +90,28 @@ class SignUp : AppCompatActivity() {
                 }
             }
 
+    }
+
+    //method for uploading creating a user in realtime database with a reference of userID got from authentication
+    private fun uploadDataToRealtimeDB(){
+        val location=""
+        val bloodgroup= "N/A"
+        val occupation= ""
+        val organization= ""
+        val number1= ""
+        val number2= ""
+
+        val userId= firebaseAuth.currentUser?.uid!! //getting userId from firebase authentication
+        Log.e("uid sign up","user id "+userId)
+
+        databaseReference= FirebaseDatabase.getInstance().getReference("Users")
+
+        val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2)
+
+        databaseReference.child(userId).setValue(user).addOnSuccessListener {
+            Toast.makeText(this, "user data uploaded", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener {
+
+        }
     }
 }
