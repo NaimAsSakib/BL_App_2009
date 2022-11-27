@@ -64,6 +64,9 @@ class LandingActivity : AppCompatActivity() {
 
         consLayoutEditProfile.setOnClickListener {
 
+            val intent= Intent(this, RegisterProfileActivity::class.java)
+            startActivity(intent)
+            finish()
             drawerLayout.closeDrawer(GravityCompat.START)
         }
 

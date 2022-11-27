@@ -1,8 +1,10 @@
 package com.example.blapp2009
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -26,7 +28,7 @@ class RegisterProfileActivity : AppCompatActivity() {
         binding= ActivityRegisterProfileBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
-        //Checking whether user entered an name or not & controlling button visibility accordingly
+       /* //Checking whether user entered an name or not & controlling button visibility accordingly
         binding.etRegisterName.doOnTextChanged { text, start, before, count ->
             if (text.toString().trimmedLength()>0){
                 binding.btnUpdate.visibility=View.VISIBLE
@@ -34,10 +36,14 @@ class RegisterProfileActivity : AppCompatActivity() {
             }else{
                 binding.btnUpdate.visibility=View.INVISIBLE
             }
-        }
+        }*/
 
         binding.btnUpdate.setOnClickListener {
-            //val name= binding.etRegisterName.text.toString()
+            val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+            val userId= sharedPreference.getString("userid","defaultName")
+            Log.e(" passed userid", "userid "+userId)
+
+            val name= binding.etRegisterName.text.toString()
             val location= binding.etRegisterLocation.text.toString()
             val bloodgroup:String = binding.etRegisterBloodGroup.text.toString()
             val occupation= binding.etRegisterOccupation.text.toString()
@@ -46,25 +52,27 @@ class RegisterProfileActivity : AppCompatActivity() {
             val number2= binding.etRegisterMobile2.text.toString()
 
             databaseReference=FirebaseDatabase.getInstance().getReference("Users")
-            val user=User(name, bloodgroup, location, occupation, organization, number1, number2)
-            databaseReference.child(name).setValue(user).addOnSuccessListener {
+            val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2)
+            if (userId != null) {
+                databaseReference.child(userId).setValue(user).addOnSuccessListener {
 
-                binding.etRegisterName.text.clear()
-                binding.etRegisterBloodGroup.text.clear()
-                binding.etRegisterLocation.text.clear()
-                binding.etRegisterOccupation.text.clear()
-                binding.etRegisterOrganization.text.clear()
-                binding.etRegisterMobile1.text.clear()
-                binding.etRegisterMobile2.text.clear()
+                    binding.etRegisterName.text.clear()
+                    binding.etRegisterBloodGroup.text.clear()
+                    binding.etRegisterLocation.text.clear()
+                    binding.etRegisterOccupation.text.clear()
+                    binding.etRegisterOrganization.text.clear()
+                    binding.etRegisterMobile1.text.clear()
+                    binding.etRegisterMobile2.text.clear()
 
-                Toast.makeText(this, "Successfully saved to database", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Successfully saved to database", Toast.LENGTH_SHORT).show()
 
-                val intent= Intent(this, LandingActivity::class.java)
-                startActivity(intent)
-                finish()
+                    val intent= Intent(this, LandingActivity::class.java)
+                    startActivity(intent)
+                    finish()
 
-            }.addOnFailureListener {
-                Toast.makeText(this, "Failed to save data to database", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Failed to save data to database", Toast.LENGTH_SHORT).show()
+                }
             }
 
         }

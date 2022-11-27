@@ -1,8 +1,10 @@
 package com.example.blapp2009
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -52,6 +54,12 @@ class Login : AppCompatActivity() {
         //code register user
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
                 if(it.isSuccessful){
+                    val currentUserId= firebaseAuth.currentUser?.uid!!
+                    Log.e("uid login","user id "+currentUserId)
+                    val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+                    var editor = sharedPreference.edit()
+                    editor.putString("userid",currentUserId)
+                    editor.commit()
 
                     Toast.makeText(this,"Login Successful", Toast.LENGTH_SHORT).show()
                     //directing to landing activity for successful login
