@@ -56,6 +56,8 @@ class RegisterProfileActivity : AppCompatActivity() {
             val section="Not needed now"
 
             databaseReference=FirebaseDatabase.getInstance().getReference("Users")
+
+            //overriding those values in this particular userId got from shared pref from Login act
             val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2,userStatus,section)
             if (userId != null) {
                 databaseReference.child(userId).setValue(user).addOnSuccessListener {

@@ -83,8 +83,6 @@ class SignUp : AppCompatActivity() {
                     uploadDataToRealtimeDB()
 
                     Toast.makeText(this,"Sign Up Successful", Toast.LENGTH_SHORT).show()
-                    //directing to landing activity for successful login
-                    //val intent= Intent(this, LandingActivity::class.java)
                     //directing to Login activity for successful login
                     val intent= Intent(this, Login::class.java)
                     startActivity(intent)
@@ -105,7 +103,7 @@ class SignUp : AppCompatActivity() {
         val organization= ""
         val number1= ""
         val number2= ""
-        val userStatus="false"
+        val userStatus="false"  //initially it is false, pending for verification
 
         val userId= firebaseAuth.currentUser?.uid!! //getting userId from firebase authentication
         Log.e("uid sign up","user id "+userId)
