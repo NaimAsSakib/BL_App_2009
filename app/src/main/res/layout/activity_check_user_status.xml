@@ -11,8 +11,19 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="Wait for admin approval"
-        android:textSize="18sp"
+        android:textSize="22sp"
+        android:textColor="#536DFE"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:src="@drawable/ic_wave"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

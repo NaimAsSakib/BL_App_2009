@@ -4,11 +4,14 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.core.text.trimmedLength
+import androidx.core.widget.doBeforeTextChanged
 import androidx.core.widget.doOnTextChanged
 import com.example.blapp2009.databinding.ActivityRegisterProfileBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +23,7 @@ class RegisterProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterProfileBinding
     private lateinit var databaseReference: DatabaseReference
     private lateinit var name: String
+    private lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,50 +42,85 @@ class RegisterProfileActivity : AppCompatActivity() {
             }
         }*/
 
+        //getting userId from shared preference saved in Login act
+        val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        userId= sharedPreference.getString("userid","defaultName").toString()
+        Log.e(" passed userid", "userid "+userId)
+
+        //method for fetching profile details with userId from realtime database
+        loadSavedProfileDetails()
+
         binding.btnUpdate.setOnClickListener {
 
-            //getting userId from shared preference saved in Login act
-            val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-            val userId= sharedPreference.getString("userid","defaultName")
-            Log.e(" passed userid", "userid "+userId)
-
-            name= binding.etRegisterName.text.toString()
-            val location= binding.etRegisterLocation.text.toString()
-            val bloodgroup:String = binding.etRegisterBloodGroup.text.toString()
-            val occupation= binding.etRegisterOccupation.text.toString()
-            val organization= binding.etRegisterOrganization.text.toString()
-            val number1= binding.etRegisterMobile1.text.toString()
-            val number2= binding.etRegisterMobile2.text.toString()
-            val userStatus="true"
-            val section="Not needed now"
-
-            databaseReference=FirebaseDatabase.getInstance().getReference("Users")
-
-            //overriding those values in this particular userId got from shared pref from Login act
-            val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2,userStatus,section)
-            if (userId != null) {
-                databaseReference.child(userId).setValue(user).addOnSuccessListener {
-
-                    binding.etRegisterName.text.clear()
-                    binding.etRegisterBloodGroup.text.clear()
-                    binding.etRegisterLocation.text.clear()
-                    binding.etRegisterOccupation.text.clear()
-                    binding.etRegisterOrganization.text.clear()
-                    binding.etRegisterMobile1.text.clear()
-                    binding.etRegisterMobile2.text.clear()
-
-                    Toast.makeText(this, "Successfully saved to database", Toast.LENGTH_SHORT).show()
-
-                    val intent= Intent(this, LandingActivity::class.java)
-                    startActivity(intent)
-                    finish()
-
-                }.addOnFailureListener {
-                    Toast.makeText(this, "Failed to save data to database", Toast.LENGTH_SHORT).show()
-                }
-            }
-
+            uploadProfileDetails()
         }
 
+    }
+
+    //method for updating/uploading user profile details to realtime database
+    private fun uploadProfileDetails(){
+
+        name= binding.etRegisterName.text.toString()
+        val location= binding.etRegisterLocation.text.toString()
+        val bloodgroup:String = binding.etRegisterBloodGroup.text.toString()
+        val occupation= binding.etRegisterOccupation.text.toString()
+        val organization= binding.etRegisterOrganization.text.toString()
+        val number1= binding.etRegisterMobile1.text.toString()
+        val number2= binding.etRegisterMobile2.text.toString()
+        val userStatus="true"
+        val section="Not needed now"
+
+        databaseReference=FirebaseDatabase.getInstance().getReference("Users")
+
+        //overriding those values in this particular userId got from shared pref from Login act
+        val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2,userStatus,section)
+        if (userId != null) {
+            databaseReference.child(userId).setValue(user).addOnSuccessListener {
+
+                //clearing all editText fields after update
+                binding.etRegisterName.text.clear()
+                binding.etRegisterBloodGroup.text.clear()
+                binding.etRegisterLocation.text.clear()
+                binding.etRegisterOccupation.text.clear()
+                binding.etRegisterOrganization.text.clear()
+                binding.etRegisterMobile1.text.clear()
+                binding.etRegisterMobile2.text.clear()
+
+                Toast.makeText(this, "Successfully saved to database", Toast.LENGTH_SHORT).show()
+
+                val intent= Intent(this, LandingActivity::class.java)
+                startActivity(intent)
+                finish()
+
+            }.addOnFailureListener {
+                Toast.makeText(this, "Failed to save data to database", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    //method for fetching profile details with userId from realtime database
+    private fun loadSavedProfileDetails(){
+        databaseReference= FirebaseDatabase.getInstance().getReference("Users")
+
+        databaseReference.child(userId).get().addOnSuccessListener {
+            if (it.exists()){
+                var savedName= it.child("name").value.toString()
+                var savedLocation= it.child("location").value.toString()
+                var savedBloodgroup= it.child("bloodgroup").value.toString()
+                var savedOccupation= it.child("occupation").value.toString()
+                var savedOrganization= it.child("organization").value.toString()
+                var savedNumber1= it.child("number1").value.toString()
+                var savedNumber2= it.child("number2").value.toString()
+
+                binding.etRegisterName.setText(savedName)
+                binding.etRegisterBloodGroup.setText(savedBloodgroup)
+                binding.etRegisterLocation.setText(savedLocation)
+                binding.etRegisterOccupation.setText(savedOccupation)
+                binding.etRegisterOrganization.setText(savedOrganization)
+                binding.etRegisterMobile1.setText(savedNumber1)
+                binding.etRegisterMobile2.setText(savedNumber2)
+
+            }
+        }
     }
 }
