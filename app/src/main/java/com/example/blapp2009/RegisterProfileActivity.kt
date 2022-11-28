@@ -52,9 +52,11 @@ class RegisterProfileActivity : AppCompatActivity() {
             val organization= binding.etRegisterOrganization.text.toString()
             val number1= binding.etRegisterMobile1.text.toString()
             val number2= binding.etRegisterMobile2.text.toString()
+            val userStatus="true"
+            val section="Not needed now"
 
             databaseReference=FirebaseDatabase.getInstance().getReference("Users")
-            val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2)
+            val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2,userStatus,section)
             if (userId != null) {
                 databaseReference.child(userId).setValue(user).addOnSuccessListener {
 

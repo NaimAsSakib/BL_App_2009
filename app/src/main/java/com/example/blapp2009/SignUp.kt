@@ -20,12 +20,14 @@ class SignUp : AppCompatActivity() {
     private lateinit var etPassword: EditText
     private lateinit var etConfirmPass: EditText
     private lateinit var etName: EditText
+    private lateinit var etSection: EditText
     private lateinit var btnApply: Button
     private lateinit var btnForLoginAct: TextView
 
     lateinit var firebaseAuth: FirebaseAuth  //firebase authentication
     private lateinit var databaseReference: DatabaseReference
     private lateinit var name:String //global variable
+    private lateinit var section:String //global variable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class SignUp : AppCompatActivity() {
         etPassword = findViewById(R.id.etSignUpPassword)
         etConfirmPass = findViewById(R.id.etSignUpConfirmPassword)
         etName=findViewById(R.id.etSignUpName)
+        etSection=findViewById(R.id.etSignUpSection)
         btnApply=findViewById(R.id.btnSignUp)
         btnForLoginAct=findViewById(R.id.tv3_SignUp)
 
@@ -56,10 +59,12 @@ class SignUp : AppCompatActivity() {
         val password:String = etPassword.text.toString()
         val confirmPassword:String = etConfirmPass.text.toString()
         name = etName.text.toString()
+        section = etSection.text.toString()
+
 
         //checking for blank field
-        if(email.trimmedLength() == 0 || password.trimmedLength()== 0 || confirmPassword.trimmedLength() == 0 || name.isBlank()){
-            Toast.makeText(this,"Email & Password can't be blank", Toast.LENGTH_SHORT).show()
+        if(email.trimmedLength() == 0 || password.trimmedLength()== 0 || confirmPassword.trimmedLength() == 0 || name.isBlank()|| section.isBlank()){
+            Toast.makeText(this," please fill up all the fields", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -100,13 +105,14 @@ class SignUp : AppCompatActivity() {
         val organization= ""
         val number1= ""
         val number2= ""
+        val userStatus="false"
 
         val userId= firebaseAuth.currentUser?.uid!! //getting userId from firebase authentication
         Log.e("uid sign up","user id "+userId)
 
         databaseReference= FirebaseDatabase.getInstance().getReference("Users")
 
-        val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2)
+        val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2, userStatus, section)
 
         databaseReference.child(userId).setValue(user).addOnSuccessListener {
             Toast.makeText(this, "user data uploaded", Toast.LENGTH_SHORT).show()

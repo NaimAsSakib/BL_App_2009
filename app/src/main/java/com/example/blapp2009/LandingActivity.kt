@@ -1,5 +1,6 @@
 package com.example.blapp2009
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -88,6 +89,9 @@ class LandingActivity : AppCompatActivity() {
         consLayoutLogout.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
             Firebase.auth.signOut()
+            val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+            var editor = sharedPreference.edit()
+            editor.clear()
             val intent= Intent(this, LoginIntro::class.java)
             startActivity(intent)
             finish()
@@ -112,7 +116,7 @@ class LandingActivity : AppCompatActivity() {
                     }
                     recyclerView.adapter=LandingActRCVAdapter(userArrayList)
 
-                    Log.e("Landing act"," arrayList size "+userArrayList.size)
+                    //Log.e("Landing act"," arrayList size "+userArrayList.size)
                 }
             }
 

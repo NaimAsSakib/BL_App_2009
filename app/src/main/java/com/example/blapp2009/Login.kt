@@ -11,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.text.trimmedLength
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class Login : AppCompatActivity() {
     private lateinit var etEmail: EditText
@@ -18,7 +20,10 @@ class Login : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var btnSignUp: TextView
 
-    lateinit var firebaseAuth: FirebaseAuth  //firebase authentication
+    private lateinit var firebaseAuth: FirebaseAuth  //firebase authentication
+    private lateinit var userId: String
+    private lateinit var databaseReference: DatabaseReference
+private lateinit var userStatus: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,28 +56,51 @@ class Login : AppCompatActivity() {
             return
         }
 
-        //code register user
+        //code for logging user in
         firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
                 if(it.isSuccessful){
 
                     //getting userId from authentication and saving in shared preference
-                    val currentUserId= firebaseAuth.currentUser?.uid!!
-                    Log.e("uid login","user id "+currentUserId)
+                        userId= firebaseAuth.currentUser?.uid!!
+                    Log.e("uid login","user id "+userId)
                     val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
                     var editor = sharedPreference.edit()
-                    editor.putString("userid",currentUserId)
+                    editor.putString("userid",userId)
                     editor.commit()
 
                     Toast.makeText(this,"Login Successful", Toast.LENGTH_SHORT).show()
-                    //directing to landing activity for successful login
+                    checkUserApprovedOrNot(userId)
+                  /*  //directing to landing activity for successful login
                     val intent= Intent(this, LandingActivity::class.java)
                     startActivity(intent)
-                    finish()
+                    finish()*/
 
                 }else{
                     Toast.makeText(this,"Authentication failed", Toast.LENGTH_SHORT).show()
                 }
             }
 
+    }
+
+    private fun checkUserApprovedOrNot(currentUserId:String ){
+
+        databaseReference=FirebaseDatabase.getInstance().getReference("Users")
+        databaseReference.child(currentUserId).get().addOnSuccessListener {
+            if (it.exists()){
+                userStatus= it.child("userStatus").value.toString()
+                if (userStatus == "true"){
+                    val intent= Intent(this, LandingActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }else{
+                    val intent1= Intent(this, CheckUserStatusActivity::class.java)
+                    startActivity(intent1)
+                    finish()
+                }
+
+            }else{
+                Toast.makeText(this, "Failed to check user status", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
