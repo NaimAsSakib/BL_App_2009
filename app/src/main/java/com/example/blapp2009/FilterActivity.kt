@@ -21,12 +21,12 @@ class FilterActivity : AppCompatActivity() {
             startActivity(intentLanding)
             finish()
         }
-
+        //opening fragments
         binding.cardView1.setOnClickListener { openFragment(FragFilterName()) }
 
-        binding.cardView1.setOnClickListener { openFragment(FragFilterBlood()) }
+        binding.cardView2.setOnClickListener { openFragment(FragFilterBlood()) }
 
-        binding.cardView1.setOnClickListener { openFragment(FragFilterLocation()) }
+        binding.cardView3.setOnClickListener { openFragment(FragFilterLocation()) }
 
 
     }
