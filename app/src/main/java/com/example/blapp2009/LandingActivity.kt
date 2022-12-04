@@ -32,11 +32,20 @@ class LandingActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<User>
 
+    private lateinit var search: ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
          setContentView(R.layout.activity_landing)
+
+        //directing to filter activity
+        search=findViewById(R.id.ivFilter)
+        search.setOnClickListener {
+            val intentFilter= Intent(this, FilterActivity::class.java)
+            startActivity(intentFilter)
+        }
 
         //recyclerView purpose
         recyclerView=findViewById(R.id.rcvLandingAct)

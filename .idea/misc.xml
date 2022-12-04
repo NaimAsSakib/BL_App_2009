@@ -15,6 +15,9 @@
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_register_profile.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_sign_up.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/custom_rcv_bloodgroup_contactlist.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/fragment_frag_filter_blood.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/fragment_frag_filter_location.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/fragment_frag_filter_name.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/navigation_drawer_layout.xml" value="0.2421875" />
       </map>
     </option>
