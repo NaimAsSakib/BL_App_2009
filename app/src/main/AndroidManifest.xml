@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BLApp2009">
         <activity
+            android:name=".FilterActivity"
+            android:exported="false" />
+        <activity
             android:name=".CheckUserStatusActivity"
             android:exported="false" />
         <activity

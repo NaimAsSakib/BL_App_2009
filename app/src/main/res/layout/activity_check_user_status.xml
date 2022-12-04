@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Wait for admin approval"
+        android:text=" Please wait for admin approval. \n      Usually takes 1 to 2 days. "
         android:textSize="22sp"
         android:textColor="#536DFE"
         app:layout_constraintTop_toTopOf="parent"
