@@ -6,7 +6,7 @@
         android:width="40dp"
         android:height="40dp"/>
 
-    <solid android:color="#FF0000">
+    <solid android:color="@color/materialColorForApp">
 
     </solid>
 
