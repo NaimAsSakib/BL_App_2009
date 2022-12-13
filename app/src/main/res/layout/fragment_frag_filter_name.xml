@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="Please enter a name"
+        android:text="Please enter a name to search"
         android:textColor="#536DFE"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvFragName">
 
         <EditText
-            android:id="@+id/etDonorName"
+            android:id="@+id/etFragFilterName"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:inputType="text"
@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="#00B0FF"
-        android:text="Submit"
+        android:text="Search"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
