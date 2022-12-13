@@ -17,6 +17,7 @@ import com.example.blapp2009.databinding.ActivityRegisterProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 
 class RegisterProfileActivity : AppCompatActivity() {
 
@@ -60,7 +61,16 @@ class RegisterProfileActivity : AppCompatActivity() {
     //method for updating/uploading user profile details to realtime database
     private fun uploadProfileDetails(){
 
-        name= binding.etRegisterName.text.toString()
+        //code for making every 1st letter of every words uppercase present in name for uploading in database
+        val strName=binding.etRegisterName.text.toString()
+        val words = strName.split(" ").toMutableList()
+         name = ""
+        for(word in words){
+            name += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } +" "
+        }
+        name = name.trim()
+
+
         val location= binding.etRegisterLocation.text.toString()
         val bloodgroup:String = binding.etRegisterBloodGroup.text.toString()
         val occupation= binding.etRegisterOccupation.text.toString()
@@ -74,6 +84,7 @@ class RegisterProfileActivity : AppCompatActivity() {
 
         //overriding those values in this particular userId got from shared pref from Login act
         val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2,userStatus,section)
+
         if (userId != null) {
             databaseReference.child(userId).setValue(user).addOnSuccessListener {
 

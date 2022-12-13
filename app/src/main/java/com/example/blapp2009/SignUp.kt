@@ -13,6 +13,7 @@ import androidx.core.text.trimmedLength
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 
 class SignUp : AppCompatActivity() {
 
@@ -60,6 +61,14 @@ class SignUp : AppCompatActivity() {
         val confirmPassword:String = etConfirmPass.text.toString()
         name = etName.text.toString()
         section = etSection.text.toString()
+
+        //code for making every 1st letter of every words uppercase present in name for uploading in database
+        val words = name.split(" ").toMutableList()
+        name = ""
+        for(word in words){
+            name += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } +" "
+        }
+        name = name.trim()
 
 
         //checking for blank field
