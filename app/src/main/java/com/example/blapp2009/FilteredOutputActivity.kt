@@ -2,6 +2,7 @@ package com.example.blapp2009
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,19 +55,26 @@ class FilteredOutputActivity : AppCompatActivity() {
                         val user=userSnapshot.getValue(User::class.java)
 
                         if (user != null) {
-                            if (user.name?.contains(nameFromFragFilterName) == true){
-                                userArrayList.add(user!!)
+                            when {
+                                user.name?.contains(nameFromFragFilterName) == true -> {
+                                    userArrayList.add(user!!)
 
-                            }else if (user.bloodgroup?.contains(bloodNameFromFragFilBlood) == true){
-                                userArrayList.add(user!!)
+                                }
+                                user.bloodgroup?.contains(bloodNameFromFragFilBlood) == true -> {
+                                    userArrayList.add(user!!)
 
-                            }else if (user.location?.contains(locationFromFragFilterLocation) == true){
-                                userArrayList.add(user!!)
+                                }
+                                user.location?.contains(locationFromFragFilterLocation) == true -> {
+                                    userArrayList.add(user!!)
 
+                                }
                             }
 
                         }
-
+                        //Toast when recyclerview is empty/ no data matched
+                        if (userArrayList.isEmpty()){
+                            Toast.makeText(this@FilteredOutputActivity, "No user found",Toast.LENGTH_SHORT).show()
+                        }
 
                     }
                     recyclerView.adapter=LandingActRCVAdapter(userArrayList)

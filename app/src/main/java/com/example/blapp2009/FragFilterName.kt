@@ -31,19 +31,19 @@ class FragFilterName : Fragment() {
 
         btnSearch.setOnClickListener {
 
+
+
+            //code for making every 1st letter of every words uppercase present in name for uploading in database
+            val etStr = etName.text.toString()
+            val words = etStr.split(" ").toMutableList()
+            name = ""
+            for(word in words){
+                name += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } +" "
+            }
+            name = name.trim()
+
             //checking whether name field is empty or not
             if (name.trim().isNotEmpty()) {
-
-                //code for making every 1st letter of every words uppercase present in name for uploading in database
-                val strName = etName.text.toString()
-                val words = strName.split(" ").toMutableList()
-                name = ""
-                for(word in words){
-                    name += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } +" "
-                }
-                name = name.trim()
-
-                //now passing that name into FilteredOutputActivity
                 val intent = Intent(context, FilteredOutputActivity::class.java)
                 intent.putExtra("inputNameFromFragFilterName", name)
                 startActivity(intent)
