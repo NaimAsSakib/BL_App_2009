@@ -52,7 +52,7 @@ RecyclerView.Adapter<FragFilterBloodRCVAdapter.MyViewHolder>() {
 
             } else { //when user unselect a radiobutton
                 hashMap.remove(position)
-               // onClickListener.onItemClicked("","unselectedBloodGroup")
+                onClickListener.onItemClicked("","unselectedBloodGroup")
             }
             notifyDataSetChanged()
 

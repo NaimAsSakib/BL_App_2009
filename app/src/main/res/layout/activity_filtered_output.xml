@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     tools:context=".FilteredOutputActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvFilteredOutputAct"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Filtered output act"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        tools:listitem="@layout/custom_rcv_bloodgroup_contactlist"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,17 +64,17 @@ class FragFilterBlood : Fragment() , ItemOnClickListener {
                 passedBloodGroupForFilter=value
                 //Log.e("selected value"," value "+passedBloodGroupForFilter)
                 btnSearch.visibility=View.VISIBLE
+
+                btnSearch.setOnClickListener {
+                    val intent = Intent(context, FilteredOutputActivity::class.java)
+                    intent.putExtra("passedBloodNameFromFragFilterBlood", passedBloodGroupForFilter)
+                    startActivity(intent)
+                }
             }
 
-            btnSearch.setOnClickListener {
-                val intent = Intent(context, FilteredOutputActivity::class.java)
-                intent.putExtra("passedBloodNameFromFragFilterBlood", passedBloodGroupForFilter)
-                startActivity(intent)
-            }
 
-        }else {
+        }else if (name.equals("unselectedBloodGroup")){
             btnSearch.visibility=View.INVISIBLE
-
         }
     }
 

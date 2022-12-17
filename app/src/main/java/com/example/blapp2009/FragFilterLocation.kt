@@ -1,11 +1,13 @@
 package com.example.blapp2009
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
@@ -18,6 +20,7 @@ class FragFilterLocation : Fragment(), ItemOnClickListener {
     private lateinit var recyclerView: RecyclerView
     //private lateinit var userArrayList: ArrayList<User>
     private lateinit var locationArrayList: ArrayList<String>
+    private lateinit var btnSearchLocation: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,13 +29,13 @@ class FragFilterLocation : Fragment(), ItemOnClickListener {
         // Inflate the layout for this fragment
         val view= inflater.inflate(R.layout.fragment_frag_filter_location, container, false)
 
+        btnSearchLocation=view.findViewById(R.id.btnFragFilterLocation)
         recyclerView=view.findViewById(R.id.rcvFragmentLocation)
         recyclerView.layoutManager= LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
 
         //Fetching registered user data from firebase realtime database
         //userArrayList= arrayListOf<User>()
-
         locationArrayList= arrayListOf()
         getUserLocation()   //method described below
 
@@ -82,13 +85,18 @@ class FragFilterLocation : Fragment(), ItemOnClickListener {
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
     }
 
     override fun onItemClicked(value: String?, name: String?) {
         if (name.equals("selectedLocation")){
-            var locationFromRCV=value
-            Log.e("FragFilterLocation "," Location selected "+locationFromRCV)        }
+            var selectedLocationFromRCV=value
+            Log.e("FragFilterLocation "," Location selected "+selectedLocationFromRCV)
+            btnSearchLocation.setOnClickListener {
+                val intent = Intent(context, FilteredOutputActivity::class.java)
+                intent.putExtra("passedLocationFromFragFilterLocation",selectedLocationFromRCV )
+                startActivity(intent)
+            }
+        }
     }
 }
