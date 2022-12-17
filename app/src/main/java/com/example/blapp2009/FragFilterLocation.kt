@@ -1,6 +1,7 @@
 package com.example.blapp2009
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import com.google.firebase.database.*
 import java.util.ArrayList
 
 
-class FragFilterLocation : Fragment() {
+class FragFilterLocation : Fragment(), ItemOnClickListener {
     //recyclerview data from firebase database
     private lateinit var databaseReference: DatabaseReference
     private lateinit var recyclerView: RecyclerView
@@ -32,8 +33,9 @@ class FragFilterLocation : Fragment() {
         //Fetching registered user data from firebase realtime database
         //userArrayList= arrayListOf<User>()
 
-        locationArrayList= arrayListOf<String>()
+        locationArrayList= arrayListOf()
         getUserLocation()   //method described below
+
 
         return view
     }
@@ -71,7 +73,7 @@ class FragFilterLocation : Fragment() {
                         locationArrayList.remove("")
                     }
 
-                    recyclerView.adapter=FragFilterLocationRCVAdapter(locationArrayList)
+                    recyclerView.adapter=FragFilterLocationRCVAdapter(locationArrayList,this@FragFilterLocation )
 
                     //Log.e("Landing act"," arrayList size "+userArrayList.size)
                 }
@@ -82,5 +84,11 @@ class FragFilterLocation : Fragment() {
             }
 
         })
+    }
+
+    override fun onItemClicked(value: String?, name: String?) {
+        if (name.equals("selectedLocation")){
+            var locationFromRCV=value
+            Log.e("FragFilterLocation "," Location selected "+locationFromRCV)        }
     }
 }

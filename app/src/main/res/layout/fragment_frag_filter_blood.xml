@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnFragFilterBlood"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
@@ -26,6 +26,7 @@
         android:layout_marginEnd="20dp"
         android:background="#00B0FF"
         android:text="Search"
+        android:visibility="invisible"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"

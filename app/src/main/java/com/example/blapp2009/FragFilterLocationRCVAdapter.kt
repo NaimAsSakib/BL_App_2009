@@ -8,7 +8,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class FragFilterLocationRCVAdapter(private val userLocationLists: ArrayList<String>) :
+class FragFilterLocationRCVAdapter(private val userLocationLists: ArrayList<String>, private val onClickListener: ItemOnClickListener) :
     RecyclerView.Adapter<FragFilterLocationRCVAdapter.MyViewHolder>() {
 
     private var rcvRowIndex = -1 //For changing CardView color when clicked & for selecting one at a time
@@ -40,6 +40,12 @@ class FragFilterLocationRCVAdapter(private val userLocationLists: ArrayList<Stri
             holder.radBtn.isChecked
         } else {
             holder.radBtn.isChecked=false
+        }
+        if (holder.radBtn.isChecked){
+            onClickListener.onItemClicked(holder.radBtn.text.toString(),"selectedLocation")
+        }else{
+            onClickListener.onItemClicked("","unSelectedLocation")
+
         }
 
     }

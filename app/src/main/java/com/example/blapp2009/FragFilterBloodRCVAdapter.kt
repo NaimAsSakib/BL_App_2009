@@ -1,21 +1,25 @@
 package com.example.blapp2009
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FragFilterBloodRCVAdapter(private val bloodGroupArrayList: ArrayList<String> ):
+class FragFilterBloodRCVAdapter(private val bloodGroupArrayList: ArrayList<String>, private val onClickListener: ItemOnClickListener):
 RecyclerView.Adapter<FragFilterBloodRCVAdapter.MyViewHolder>() {
 
-    var rcvRowIndex = -1 //For changing textview shape color when clicked & for selecting one at a time
-    var hashMap = HashMap<Int, String>() //for selecting & unselecting mechanism
+
+    private var hashMap = HashMap<Int, String>() //for selecting & unselecting mechanism
 
 
     class MyViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvBloodGroup: TextView =itemView.findViewById(R.id.tvBloodGroupRCVFragFilter)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -43,12 +47,17 @@ RecyclerView.Adapter<FragFilterBloodRCVAdapter.MyViewHolder>() {
                 hashMap.clear()
                 hashMap.put(position,holder.tvBloodGroup.toString())
 
+                var selectedValue= holder.tvBloodGroup.text.toString()
+                onClickListener.onItemClicked(selectedValue, "selectedBloodGroup")
+
             } else { //when user unselect a radiobutton
                 hashMap.remove(position)
-
+               // onClickListener.onItemClicked("","unselectedBloodGroup")
             }
             notifyDataSetChanged()
+
         }
+
     }
 
     override fun getItemCount(): Int {

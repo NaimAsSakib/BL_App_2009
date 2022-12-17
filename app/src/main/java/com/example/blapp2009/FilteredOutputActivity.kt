@@ -12,5 +12,7 @@ class FilteredOutputActivity : AppCompatActivity() {
         //getting value from FragFilterName
         val intent = intent
         val nameFromFragFilterName = intent.getStringExtra("inputNameFromFragFilterName")
+        val bloodNameFromFragFilBlood= intent.getStringExtra("passedBloodNameFromFragFilterBlood")
+        Log.e("blood", "passed value  "+bloodNameFromFragFilBlood)
     }
 }
