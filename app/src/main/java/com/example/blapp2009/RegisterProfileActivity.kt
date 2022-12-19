@@ -71,10 +71,26 @@ class RegisterProfileActivity : AppCompatActivity() {
         name = name.trim()
 
 
-        val location= binding.etRegisterLocation.text.toString()
-        val bloodgroup:String = binding.etRegisterBloodGroup.text.toString()
-        val occupation= binding.etRegisterOccupation.text.toString()
+        val locationStr= binding.etRegisterLocation.text.toString()
+        val wordsLocation = locationStr.split(" ").toMutableList()
+        var location = ""
+        for(word in wordsLocation){
+            location += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } +" "
+        }
+        location = location.trim()
+
+        val occupationStr= binding.etRegisterOccupation.text.toString()
+        val wordsOccupation = occupationStr.split(" ").toMutableList()
+        var occupation = ""
+        for(word in wordsOccupation){
+            occupation += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } +" "
+        }
+        occupation = occupation.trim()
+
         val organization= binding.etRegisterOrganization.text.toString()
+
+
+        val bloodgroup:String = binding.etRegisterBloodGroup.text.toString().uppercase()
         val number1= binding.etRegisterMobile1.text.toString()
         val number2= binding.etRegisterMobile2.text.toString()
         val userStatus="true"
