@@ -83,6 +83,9 @@ class LandingActivity : AppCompatActivity() {
         }
 
         consLayoutSearch.setOnClickListener {
+            val intentFilterAct= Intent(this, FilterActivity::class.java)
+            startActivity(intentFilterAct)
+            //finish()
             drawerLayout.closeDrawer(GravityCompat.START)
         }
 
