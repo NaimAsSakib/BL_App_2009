@@ -5,7 +5,10 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/drawable/circle_shape_blood_normal.xml" value="0.1425" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/drawable/circle_shape_blood_red.xml" value="0.1425" />
+        <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/drawable/ic_baseline_arrow_back.xml" value="0.1605" />
+        <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/drawable/ic_baseline_edit_password.xml" value="0.1605" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/drawable/ic_baseline_filter.xml" value="0.1425" />
+        <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/drawable/ic_baseline_keyboard_arrow_back_white.xml" value="0.1605" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/drawable/ic_undraw_friendship_mni7__1_.xml" value="0.1425" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_check_user_status.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_filter.xml" value="0.2421875" />
@@ -15,6 +18,7 @@
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_login_intro.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_register_profile.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_sign_up.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/activity_user_details.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/custom_frcv_rag_filter_location.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/custom_rcv_bloodgroup_contactlist.xml" value="0.2421875" />
         <entry key="..\:/AndroidStudioProjects/BLApp2009/app/src/main/res/layout/custom_rcv_frag_filter_bloodgroup.xml" value="0.2421875" />

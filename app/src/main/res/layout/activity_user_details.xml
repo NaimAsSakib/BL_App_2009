@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserDetailsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#00B0FF">
+
+        <ImageView
+            android:id="@+id/ivBackArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/ic_baseline_arrow_back_white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="Donor Details"
+            app:layout_constraintStart_toEndOf="@id/ivBackArrow"
+            app:layout_constraintTop_toTopOf="@id/ivBackArrow"
+            app:layout_constraintBottom_toBottomOf="@id/ivBackArrow"/>
+
+
+        <TextView
+            android:id="@+id/tvUserDetailsBloodGroupName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/consLayout1"
+            app:layout_constraintBottom_toBottomOf="@id/consLayout1"
+            app:layout_constraintStart_toStartOf="@id/consLayout1"
+            app:layout_constraintEnd_toEndOf="@id/consLayout1"
+            app:layout_constraintVertical_bias="0.7"
+            android:text="A+"
+            />
+
+
+        <TextView
+            android:id="@+id/tvUserDetailsUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:text="Mohammad Masudur Rahman"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsBloodGroupName"
+            app:layout_constraintBottom_toBottomOf="@id/consLayout1"
+            app:layout_constraintStart_toStartOf="@id/tvUserDetailsBloodGroupName"
+            app:layout_constraintEnd_toEndOf="@id/tvUserDetailsBloodGroupName"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintTop_toBottomOf="@id/consLayout1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvUserDetailsPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:textSize="11sp"
+            android:textColor="#94989e"
+            android:text="Phone number"
+            app:layout_constraintStart_toStartOf="@id/consLayout2"
+            app:layout_constraintTop_toTopOf="@id/consLayout2"/>
+
+        <TextView
+            android:id="@+id/tvUserDetailsPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:text="01711111111111"
+            android:textColor="#000000"
+            android:layout_marginTop="6dp"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsPhone"
+            app:layout_constraintStart_toStartOf="@id/tvUserDetailsPhone"/>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewCallUserDetails"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            app:cardCornerRadius="45dp"
+            app:layout_constraintTop_toTopOf="@id/tvUserDetailsPhone"
+            app:layout_constraintBottom_toBottomOf="@id/tvUserDetailsPhoneNumber"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/consLayCardView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#f5f5f5"
+                android:paddingStart="13dp"
+                android:paddingEnd="15dp">
+
+                <ImageView
+                    android:id="@+id/ivCardViewCall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/call"
+                    app:layout_constraintStart_toStartOf="@id/consLayCardView1"
+                    app:layout_constraintTop_toTopOf="@id/consLayCardView1"
+                    app:layout_constraintBottom_toBottomOf="@id/consLayCardView1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textStyle="normal"
+                    android:textSize="12sp"
+                    android:textColor="#000000"
+                    android:text="Call"
+                    app:layout_constraintTop_toTopOf="@id/ivCardViewCall"
+                    app:layout_constraintBottom_toBottomOf="@id/ivCardViewCall"
+                    app:layout_constraintStart_toEndOf="@id/ivCardViewCall" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/viewDonorDetails1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsPhoneNumber"
+            android:layout_marginTop="17dp"
+            android:color="#e6e6e6"/>
+
+
+        <TextView
+            android:id="@+id/tvUserDetailsEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textStyle="normal"
+            android:textSize="11sp"
+            android:textColor="#94989e"
+            android:text="Email Address"
+            app:layout_constraintTop_toBottomOf="@id/viewDonorDetails1"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvUserDetailsEmailAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:text="masudur.rahman@sslwireless.com"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsEmail"
+            app:layout_constraintStart_toStartOf="@id/tvUserDetailsEmail"/>
+        <View
+            android:id="@+id/viewDonorDetails2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsEmailAddress"
+            android:layout_marginTop="18dp"
+            android:color="#e6e6e6"/>
+
+        <TextView
+            android:id="@+id/tvUserDetailsLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textStyle="normal"
+            android:textSize="11sp"
+            android:textColor="#94989e"
+            android:text="Current Location"
+            app:layout_constraintTop_toBottomOf="@id/viewDonorDetails2"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvUserDetailsLocationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:text="Dhaka"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsLocation"
+            app:layout_constraintStart_toStartOf="@id/tvUserDetailsEmail"/>
+
+        <View
+            android:id="@+id/viewDonorDetails3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsLocationName"
+            android:layout_marginTop="17dp"
+            android:color="#e6e6e6"/>
+
+
+        <TextView
+            android:id="@+id/tvUserDetailsOccupation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textStyle="normal"
+            android:textSize="11sp"
+            android:textColor="#94989e"
+            android:text="Occupation"
+            app:layout_constraintTop_toBottomOf="@id/viewDonorDetails3"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvUserDetailsOccupationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:text="Job"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsOccupation"
+            app:layout_constraintStart_toStartOf="@id/tvUserDetailsEmailAddress"/>
+        <View
+            android:id="@+id/viewDonorDetails4"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsOccupationName"
+            android:layout_marginTop="17dp"
+            android:color="#e6e6e6"/>
+
+        <TextView
+            android:id="@+id/tvUserDetailsOrganization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textStyle="normal"
+            android:textSize="11sp"
+            android:textColor="#94989e"
+            android:text="Organization Name"
+            app:layout_constraintTop_toBottomOf="@id/viewDonorDetails4"
+            app:layout_constraintStart_toStartOf="parent"/>
+        <TextView
+            android:id="@+id/tvUserDetailsOrganizationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:text="Brac bank"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsOrganization"
+            app:layout_constraintStart_toStartOf="@id/tvUserDetailsOccupation"/>
+        <View
+            android:id="@+id/viewDonorDetails5"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvUserDetailsOrganizationName"
+            android:layout_marginTop="17dp"
+            android:color="#e6e6e6"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

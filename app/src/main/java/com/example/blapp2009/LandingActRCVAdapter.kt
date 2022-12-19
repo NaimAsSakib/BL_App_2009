@@ -1,17 +1,22 @@
 package com.example.blapp2009
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 class LandingActRCVAdapter(private val userLists: ArrayList<User>) :
     RecyclerView.Adapter<LandingActRCVAdapter.MyViewHolder>() {
+
+
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -34,6 +39,44 @@ class LandingActRCVAdapter(private val userLists: ArrayList<User>) :
         holder.bloodgroup.text=item.bloodgroup
         Log.e("adapter","name "+item.name)
         Log.e("adapter","blood " +item.bloodgroup)
+
+        val userName=item.name
+        val userBloodGroup=item.bloodgroup
+        val location= item.location
+        val number1= item.number1
+        val number2=item.number2
+        val occupation=item.occupation
+        val organization=item.organization
+
+        val context= holder.bloodgroup.context  //for bringing context in adapter class
+
+        holder.layout.setOnClickListener {
+
+            val intent=Intent(context, UserDetailsActivity::class.java)
+            intent.putExtra("userNameFromLandingAdapter",userName)
+            intent.putExtra("userBloodGroupFromLandingAdapter",userBloodGroup)
+            intent.putExtra("userLocationFromLandingAdapter",location)
+            intent.putExtra("userNumber1FromLandingAdapter",number1)
+            intent.putExtra("userNumber2FromLandingAdapter",number2)
+            intent.putExtra("userOccupationFromLandingAdapter",occupation)
+            intent.putExtra("userOrganizationFromLandingAdapter",organization)
+            context.startActivity(intent)
+        }
+
+        //call functionality
+        holder.call.setOnClickListener {
+            if (number1 != null){
+                if (number1.trim().isNotEmpty()){
+                    val intentCall = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$number1"))
+                    context.startActivity(intentCall)
+                }else{
+                    Toast.makeText(context,"Mobile number not given",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
+
     }
 
     override fun getItemCount(): Int {

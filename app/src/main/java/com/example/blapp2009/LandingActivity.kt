@@ -3,7 +3,6 @@ package com.example.blapp2009
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -11,7 +10,6 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
@@ -82,17 +80,14 @@ class LandingActivity : AppCompatActivity() {
 
         consLayoutChangePassword.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
-
         }
 
         consLayoutSearch.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
-
         }
 
         consLayoutNotification.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
-
         }
 
         consLayoutLogout.setOnClickListener {
@@ -107,6 +102,7 @@ class LandingActivity : AppCompatActivity() {
         }
 
     }
+
 
     //method for fetching registered user data from firebase realtime database
     private fun getUserData(){
