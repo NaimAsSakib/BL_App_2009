@@ -1,9 +1,12 @@
 package com.example.blapp2009
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import com.example.blapp2009.databinding.ActivityRegisterProfileBinding
 import com.example.blapp2009.databinding.ActivityUserDetailsBinding
 
@@ -48,6 +51,15 @@ class UserDetailsActivity : AppCompatActivity() {
             binding.tvUserDetailsOrganizationName.text="Not available"
         }else { binding.tvUserDetailsOrganizationName.text=organization }
 
+        binding.cardViewCallUserDetails.setOnClickListener {
+
+            if (number1.trim().isNotEmpty()) {
+                val intentCall = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$number1"))
+                startActivity(intentCall)
+            } else {
+                Toast.makeText(this, "Mobile number not given", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     }
 }
