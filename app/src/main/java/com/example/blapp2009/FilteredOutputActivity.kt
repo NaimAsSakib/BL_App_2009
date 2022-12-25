@@ -81,7 +81,7 @@ class FilteredOutputActivity : AppCompatActivity() {
                         recyclerView.adapter=LandingActRCVAdapter(userArrayList) //using the same LandingActRCVAdapter again here
 
                     }else{
-                        Toast.makeText(this@FilteredOutputActivity, "No user found",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@FilteredOutputActivity, "No friend found",Toast.LENGTH_SHORT).show()
 
                     }
 
