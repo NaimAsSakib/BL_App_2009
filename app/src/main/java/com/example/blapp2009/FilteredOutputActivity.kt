@@ -1,5 +1,6 @@
 package com.example.blapp2009
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -90,4 +91,10 @@ class FilteredOutputActivity : AppCompatActivity() {
         })
     }
 
+    override fun onBackPressed() {
+        // super.onBackPressed()
+       /* val intent = Intent(this, LandingActivity::class.java)
+        startActivity(intent)*/
+        finish()
+    }
 }

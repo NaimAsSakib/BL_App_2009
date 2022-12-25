@@ -92,14 +92,13 @@ class RegisterProfileActivity : AppCompatActivity() {
 
         val bloodgroup:String = binding.etRegisterBloodGroup.text.toString().uppercase()
         val number1= binding.etRegisterMobile1.text.toString()
-        val number2= binding.etRegisterMobile2.text.toString()
         val userStatus="true"
         val section="Not needed now"
 
         databaseReference=FirebaseDatabase.getInstance().getReference("Users")
 
         //overriding those values in this particular userId got from shared pref from Login act
-        val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2,userStatus,section)
+        val user=User(userId, name, bloodgroup, location, occupation, organization, number1,userStatus,section)
 
         if (userId != null) {
             databaseReference.child(userId).setValue(user).addOnSuccessListener {
@@ -111,7 +110,6 @@ class RegisterProfileActivity : AppCompatActivity() {
                 binding.etRegisterOccupation.text.clear()
                 binding.etRegisterOrganization.text.clear()
                 binding.etRegisterMobile1.text.clear()
-                binding.etRegisterMobile2.text.clear()
 
                 Toast.makeText(this, "Successfully saved to database", Toast.LENGTH_SHORT).show()
 
@@ -137,7 +135,6 @@ class RegisterProfileActivity : AppCompatActivity() {
                 var savedOccupation= it.child("occupation").value.toString()
                 var savedOrganization= it.child("organization").value.toString()
                 var savedNumber1= it.child("number1").value.toString()
-                var savedNumber2= it.child("number2").value.toString()
 
                 binding.etRegisterName.setText(savedName)
                 binding.etRegisterBloodGroup.setText(savedBloodgroup)
@@ -145,7 +142,6 @@ class RegisterProfileActivity : AppCompatActivity() {
                 binding.etRegisterOccupation.setText(savedOccupation)
                 binding.etRegisterOrganization.setText(savedOrganization)
                 binding.etRegisterMobile1.setText(savedNumber1)
-                binding.etRegisterMobile2.setText(savedNumber2)
 
             }
         }

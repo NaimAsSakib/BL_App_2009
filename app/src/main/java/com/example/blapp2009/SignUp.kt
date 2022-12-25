@@ -29,6 +29,8 @@ class SignUp : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var name:String //global variable
     private lateinit var section:String //global variable
+    private lateinit var userEmail: String //global variable
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +58,8 @@ class SignUp : AppCompatActivity() {
     }
 
     private fun signUpUser(){
-        val email:String = etEmail.text.toString()
+       // val email:String = etEmail.text.toString()
+        userEmail = etEmail.text.toString()
         val password:String = etPassword.text.toString()
         val confirmPassword:String = etConfirmPass.text.toString()
         name = etName.text.toString()
@@ -72,7 +75,7 @@ class SignUp : AppCompatActivity() {
 
 
         //checking for blank field
-        if(email.trimmedLength() == 0 || password.trimmedLength()== 0 || confirmPassword.trimmedLength() == 0 || name.isBlank()|| section.isBlank()){
+        if(userEmail.trimmedLength() == 0 || password.trimmedLength()== 0 || confirmPassword.trimmedLength() == 0 || name.isBlank()|| section.isBlank()){
             Toast.makeText(this," please fill up all the fields", Toast.LENGTH_SHORT).show()
             return
         }
@@ -84,7 +87,7 @@ class SignUp : AppCompatActivity() {
         }
 
         //code for registering user
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(userEmail, password)
             .addOnCompleteListener(this){
                 if(it.isSuccessful){
 
@@ -111,7 +114,6 @@ class SignUp : AppCompatActivity() {
         val occupation= ""
         val organization= ""
         val number1= ""
-        val number2= ""
         val userStatus="false"  //initially it is false, pending for verification
 
         val userId= firebaseAuth.currentUser?.uid!! //getting userId from firebase authentication
@@ -119,8 +121,9 @@ class SignUp : AppCompatActivity() {
 
         databaseReference= FirebaseDatabase.getInstance().getReference("Users")
 
-        val user=User(userId, name, bloodgroup, location, occupation, organization, number1, number2, userStatus, section)
+        val user=User(userId, userEmail, name, bloodgroup, location, occupation, organization, number1, userStatus, section)
 
+        //userID er reference a shob details save hobe
         databaseReference.child(userId).setValue(user).addOnSuccessListener {
             Toast.makeText(this, "user data uploaded", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {

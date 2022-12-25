@@ -44,9 +44,10 @@ class LandingActRCVAdapter(private val userLists: ArrayList<User>) :
         val userBloodGroup=item.bloodgroup
         val location= item.location
         val number1= item.number1
-        val number2=item.number2
         val occupation=item.occupation
         val organization=item.organization
+        val userID= item.userId
+        val userEmail= item.userEmail
 
         val context= holder.bloodgroup.context  //for bringing context in adapter class
 
@@ -57,9 +58,9 @@ class LandingActRCVAdapter(private val userLists: ArrayList<User>) :
             intent.putExtra("userBloodGroupFromLandingAdapter",userBloodGroup)
             intent.putExtra("userLocationFromLandingAdapter",location)
             intent.putExtra("userNumber1FromLandingAdapter",number1)
-            intent.putExtra("userNumber2FromLandingAdapter",number2)
             intent.putExtra("userOccupationFromLandingAdapter",occupation)
             intent.putExtra("userOrganizationFromLandingAdapter",organization)
+            intent.putExtra("userEmailFromLandingAdapter",userEmail)
             context.startActivity(intent)
         }
 

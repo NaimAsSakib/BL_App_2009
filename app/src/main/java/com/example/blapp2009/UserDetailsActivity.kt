@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import com.example.blapp2009.databinding.ActivityRegisterProfileBinding
 import com.example.blapp2009.databinding.ActivityUserDetailsBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class UserDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserDetailsBinding
@@ -21,14 +22,21 @@ class UserDetailsActivity : AppCompatActivity() {
         binding= ActivityUserDetailsBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
 
+        binding.ivBackArrow.setOnClickListener {
+            val intent = Intent(this, LandingActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         val intent = intent
         val name = intent.getStringExtra("userNameFromLandingAdapter").toString()
         val blood= intent.getStringExtra("userBloodGroupFromLandingAdapter").toString()
         val location= intent.getStringExtra("userLocationFromLandingAdapter").toString()
         val number1= intent.getStringExtra("userNumber1FromLandingAdapter").toString()
-        val number2= intent.getStringExtra("userNumber2FromLandingAdapter").toString()
         val occupation= intent.getStringExtra("userOccupationFromLandingAdapter").toString()
         val organization= intent.getStringExtra("userOrganizationFromLandingAdapter").toString()
+
+        val userEmail= intent.getStringExtra("userEmailFromLandingAdapter").toString()
 
         binding.tvUserDetailsUserName.text=name
 
@@ -51,6 +59,12 @@ class UserDetailsActivity : AppCompatActivity() {
             binding.tvUserDetailsOrganizationName.text="Not available"
         }else { binding.tvUserDetailsOrganizationName.text=organization }
 
+        if (userEmail.isEmpty()){
+            binding.tvUserDetailsEmailAddress.text="Not available"
+        }else { binding.tvUserDetailsEmailAddress.text=userEmail }
+
+
+        //calling mechanism
         binding.cardViewCallUserDetails.setOnClickListener {
 
             if (number1.trim().isNotEmpty()) {
@@ -61,5 +75,14 @@ class UserDetailsActivity : AppCompatActivity() {
             }
         }
 
+
+
+    }
+
+    override fun onBackPressed() {
+       super.onBackPressed()
+        /*val intent = Intent(this, LandingActivity::class.java)
+        startActivity(intent)
+        finish()*/
     }
 }
