@@ -67,7 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingStart="15dp"
-            android:layout_marginTop="22dp"
+            android:paddingBottom="95dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintTop_toBottomOf="@id/view"
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/custom_rcv_bloodgroup_contactlist">

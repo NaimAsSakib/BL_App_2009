@@ -46,7 +46,6 @@ class LandingActRCVAdapter(private val userLists: ArrayList<User>) :
         val number1= item.number1
         val occupation=item.occupation
         val organization=item.organization
-        val userID= item.userId
         val userEmail= item.userEmail
 
         val context= holder.bloodgroup.context  //for bringing context in adapter class
