@@ -32,15 +32,11 @@ class LandingActivity : AppCompatActivity() {
     private lateinit var userArrayList: ArrayList<User>
 
     private lateinit var search: ImageView
-    private lateinit var loadingProgressBarDialog: LoadingProgressBarDialog
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
          setContentView(R.layout.activity_landing)
-
-        loadingProgressBarDialog= LoadingProgressBarDialog(this)
 
         //directing to filter activity
         search=findViewById(R.id.ivFilter)
@@ -113,17 +109,6 @@ class LandingActivity : AppCompatActivity() {
 
     //method for fetching registered user data from firebase realtime database
     private fun getUserData(){
-
-        //progressbar codes
-        loadingProgressBarDialog.startProgressBarLoading()
-        val handler=Handler()
-        handler.postDelayed(object :Runnable{
-            override fun run() {
-                loadingProgressBarDialog.dismissProgressBarDialog()
-            }
-        }, 2000)
-
-        //database codes
         databaseReference=FirebaseDatabase.getInstance().getReference("Users")
 
 

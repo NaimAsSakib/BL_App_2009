@@ -32,10 +32,15 @@ class Login : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var userStatus: String
 
+    private lateinit var loadingProgressBarDialog: LoadingProgressBarDialog
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        loadingProgressBarDialog= LoadingProgressBarDialog(this)
 
         etEmail = findViewById(R.id.etLoginEmail)
         etPassword = findViewById(R.id.etLoginPassword)
@@ -92,6 +97,8 @@ class Login : AppCompatActivity() {
         }
 
         //code for logging user in
+        loadingProgressBarDialog.startProgressBarLoading()  //progressbar start
+
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) {
             if (it.isSuccessful) {
 
@@ -110,8 +117,11 @@ class Login : AppCompatActivity() {
                 // I make userStatus 'true' manually from realtime database, user will see LandingAct then.Searching userStatus through userID
                 checkUserApprovedOrNot(userId)
 
+                loadingProgressBarDialog.dismissProgressBarDialog()
+
             } else {
                 Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                loadingProgressBarDialog.dismissProgressBarDialog()
             }
         }
 
