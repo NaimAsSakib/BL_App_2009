@@ -141,7 +141,7 @@
             app:layout_constraintTop_toTopOf="@id/tv3_Login" />
 
         <TextView
-            android:id="@+id/tvForgotPassword"
+            android:id="@+id/tv5ForgotPasswordLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot Password?"

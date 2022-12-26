@@ -2,23 +2,30 @@ package com.example.blapp2009
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.text.trimmedLength
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.regex.Pattern
 
 class Login : AppCompatActivity() {
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var btnSignUp: TextView
+
+    private lateinit var btnForgotPassword: TextView
 
     private lateinit var firebaseAuth: FirebaseAuth  //firebase authentication
     private lateinit var userId: String
@@ -35,10 +42,37 @@ class Login : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         btnSignUp = findViewById(R.id.tv4_Login)
 
+        btnForgotPassword=findViewById(R.id.tv5ForgotPasswordLogin)
+
         firebaseAuth = FirebaseAuth.getInstance()  //firebase authentication
 
         btnLogin.setOnClickListener {
             login()  //method is described bottom of this activity
+        }
+
+        // code for showing alertdialog & sending password reset link to given Email to reset password
+        btnForgotPassword.setOnClickListener {
+            val builder= AlertDialog.Builder(this)
+            val view= layoutInflater.inflate(R.layout.alertdialog_forgot_password, null)
+            val userEmail= view.findViewById<EditText>(R.id.etAlertDialogEmail)
+
+            builder.setView(view)
+            val dialog=builder.create()
+
+            view.findViewById<Button>(R.id.btnSendAlertDialog).setOnClickListener {
+
+                compareEmail(userEmail)  //method is described below
+                dialog.dismiss()
+            }
+
+            view.findViewById<Button>(R.id.btnCancelAlertDialog).setOnClickListener {
+                dialog.dismiss()
+            }
+            if (dialog.window != null){
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
+            }
+            dialog.show()
+
         }
 
         btnSignUp.setOnClickListener {
@@ -105,6 +139,21 @@ class Login : AppCompatActivity() {
 
             } else {
                 Toast.makeText(this, "Failed to get user", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    //method for showing alertdialog & sending password reset link to given Email to reset password
+    private fun compareEmail(email: EditText){
+        if (email.text.toString().isEmpty()){
+            return
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()){
+            return
+        }
+        firebaseAuth.sendPasswordResetEmail(email.text.toString()).addOnCompleteListener {
+            if (it.isSuccessful){
+                Toast.makeText(this, "Check your email inbox & spam folder", Toast.LENGTH_SHORT).show()
             }
         }
     }
