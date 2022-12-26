@@ -8,9 +8,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ivLogin">
 
         <TextView
             android:id="@+id/tv1_Login"
@@ -110,6 +111,7 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@id/textInputLayoutLoginPassword"
             app:layout_constraintStart_toStartOf="@id/textInputLayoutLoginPassword"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutLoginPassword" />
@@ -138,9 +140,24 @@
            app:layout_constraintStart_toEndOf="@id/tv3_Login"
             app:layout_constraintTop_toTopOf="@id/tv3_Login" />
 
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:layout_marginStart="5dp"
+            android:textColor="#536DFE"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
+        android:id="@+id/ivLogin"
         android:layout_width="0dp"
         android:layout_height="90dp"
         android:src="@drawable/ic_wave"

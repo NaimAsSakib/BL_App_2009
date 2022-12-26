@@ -3,6 +3,7 @@ package com.example.blapp2009
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -113,8 +114,16 @@ class LandingActivity : AppCompatActivity() {
     //method for fetching registered user data from firebase realtime database
     private fun getUserData(){
 
+        //progressbar codes
         loadingProgressBarDialog.startProgressBarLoading()
+        val handler=Handler()
+        handler.postDelayed(object :Runnable{
+            override fun run() {
+                loadingProgressBarDialog.dismissProgressBarDialog()
+            }
+        }, 2000)
 
+        //database codes
         databaseReference=FirebaseDatabase.getInstance().getReference("Users")
 
 
@@ -131,8 +140,6 @@ class LandingActivity : AppCompatActivity() {
                     recyclerView.adapter=LandingActRCVAdapter(userArrayList)
 
                     //Log.e("Landing act"," arrayList size "+userArrayList.size)
-
-                    loadingProgressBarDialog.dismissProgressBarDialog()
                 }
             }
 

@@ -208,6 +208,7 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@id/textInputLayoutSignUpSection"
             app:layout_constraintStart_toStartOf="@id/textInputLayoutSignUpSection"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutSignUpSection" />

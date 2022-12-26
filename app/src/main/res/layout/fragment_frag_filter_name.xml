@@ -57,6 +57,7 @@
         android:layout_marginTop="15dp"
         android:background="#00B0FF"
         android:text="Search"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
