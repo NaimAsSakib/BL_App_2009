@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isEmpty
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
@@ -29,9 +28,9 @@ class FilteredOutputActivity : AppCompatActivity() {
          nameFromFragFilterName = intent.getStringExtra("inputNameFromFragFilterName").toString()
          bloodNameFromFragFilBlood= intent.getStringExtra("passedBloodNameFromFragFilterBlood").toString()
          locationFromFragFilterLocation= intent.getStringExtra("passedLocationFromFragFilterLocation").toString()
-       /* Log.e("blood", "passed value  "+nameFromFragFilterName)
+        Log.e("blood", "passed value  "+nameFromFragFilterName)
         Log.e("blood", "passed value  "+bloodNameFromFragFilBlood)
-        Log.e("blood", "passed value  "+locationFromFragFilterLocation)*/
+        Log.e("blood", "passed value  "+locationFromFragFilterLocation)
 
         //recyclerView purpose
         recyclerView=findViewById(R.id.rcvFilteredOutputAct)
@@ -73,16 +72,13 @@ class FilteredOutputActivity : AppCompatActivity() {
                             }
 
                         }
-
-                    }
-
+                }
                     //checking if recyclerview is empty or not through userArrayList & setting adapter or showing Toast accordingly
                     if (userArrayList.isNotEmpty()){
                         recyclerView.adapter=LandingActRCVAdapter(userArrayList) //using the same LandingActRCVAdapter again here
 
                     }else{
-                        Toast.makeText(this@FilteredOutputActivity, "No friend found",Toast.LENGTH_SHORT).show()
-
+                        Toast.makeText(this@FilteredOutputActivity, "No user found",Toast.LENGTH_SHORT).show()
                     }
 
                     //Log.e("Landing act"," arrayList size "+userArrayList.size)
@@ -94,7 +90,6 @@ class FilteredOutputActivity : AppCompatActivity() {
             }
 
         })
-
     }
 
     override fun onBackPressed() {

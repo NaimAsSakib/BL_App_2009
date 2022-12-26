@@ -25,6 +25,7 @@ class Login : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var userStatus: String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -63,13 +64,13 @@ class Login : AppCompatActivity() {
                 //getting userId from authentication and saving in shared preference
                 userId = firebaseAuth.currentUser?.uid!!
                 Log.e("uid login", "user id " + userId)
+                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
 
+                //saving logged in userId in shared pref for future usage in RegisterActivity
                 val sharedPreference = getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
                 var editor = sharedPreference.edit()
                 editor.putString("userid", userId)
                 editor.commit()
-
-                Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
 
                 //method for checking user is really from 09 batch or not, initially while signUp userStatus is 'false' but if
                 // I make userStatus 'true' manually from realtime database, user will see LandingAct then.Searching userStatus through userID

@@ -31,12 +31,15 @@ class LandingActivity : AppCompatActivity() {
     private lateinit var userArrayList: ArrayList<User>
 
     private lateinit var search: ImageView
+    private lateinit var loadingProgressBarDialog: LoadingProgressBarDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
          setContentView(R.layout.activity_landing)
+
+        loadingProgressBarDialog= LoadingProgressBarDialog(this)
 
         //directing to filter activity
         search=findViewById(R.id.ivFilter)
@@ -109,6 +112,9 @@ class LandingActivity : AppCompatActivity() {
 
     //method for fetching registered user data from firebase realtime database
     private fun getUserData(){
+
+        loadingProgressBarDialog.startProgressBarLoading()
+
         databaseReference=FirebaseDatabase.getInstance().getReference("Users")
 
 
@@ -125,6 +131,8 @@ class LandingActivity : AppCompatActivity() {
                     recyclerView.adapter=LandingActRCVAdapter(userArrayList)
 
                     //Log.e("Landing act"," arrayList size "+userArrayList.size)
+
+                    loadingProgressBarDialog.dismissProgressBarDialog()
                 }
             }
 

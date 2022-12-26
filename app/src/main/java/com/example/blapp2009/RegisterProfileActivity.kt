@@ -25,6 +25,7 @@ class RegisterProfileActivity : AppCompatActivity() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var name: String
     private lateinit var userId: String
+    private lateinit var userEmail: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,10 +96,14 @@ class RegisterProfileActivity : AppCompatActivity() {
         val userStatus="true"
         val section="Not needed now"
 
+        /*val intent = intent
+        val userEmail= intent.getStringExtra("userEmailFromSignUp").toString()
+        */
+
         databaseReference=FirebaseDatabase.getInstance().getReference("Users")
 
         //overriding those values in this particular userId got from shared pref from Login act
-        val user=User(userId, name, bloodgroup, location, occupation, organization, number1,userStatus,section)
+        val user=User(userId, userEmail, name, bloodgroup, location, occupation, organization, number1,userStatus,section)
 
         if (userId != null) {
             databaseReference.child(userId).setValue(user).addOnSuccessListener {
@@ -135,6 +140,8 @@ class RegisterProfileActivity : AppCompatActivity() {
                 var savedOccupation= it.child("occupation").value.toString()
                 var savedOrganization= it.child("organization").value.toString()
                 var savedNumber1= it.child("number1").value.toString()
+                userEmail= it.child("userEmail").value.toString()
+
 
                 binding.etRegisterName.setText(savedName)
                 binding.etRegisterBloodGroup.setText(savedBloodgroup)

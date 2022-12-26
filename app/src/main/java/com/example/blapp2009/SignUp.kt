@@ -60,6 +60,10 @@ class SignUp : AppCompatActivity() {
     private fun signUpUser(){
        // val email:String = etEmail.text.toString()
         userEmail = etEmail.text.toString()
+
+        val intent=Intent(this, UserDetailsActivity::class.java)
+        intent.putExtra("userEmailFromSignUp",userEmail)
+
         val password:String = etPassword.text.toString()
         val confirmPassword:String = etConfirmPass.text.toString()
         name = etName.text.toString()
@@ -101,7 +105,7 @@ class SignUp : AppCompatActivity() {
                     finish()
 
                 }else{
-                    Toast.makeText(this,"Error creating user", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Email already exists or failed to connect", Toast.LENGTH_SHORT).show()
                 }
             }
 
