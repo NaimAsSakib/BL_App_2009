@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
@@ -79,7 +80,11 @@ class LandingActivity : AppCompatActivity() {
         }
 
         consLayoutChangePassword.setOnClickListener {
+            val intentChangePassword= Intent(this, Login::class.java)
+            startActivity(intentChangePassword)
+            Toast.makeText(this, "Click on Forgot Password", Toast.LENGTH_SHORT).show()
             drawerLayout.closeDrawer(GravityCompat.START)
+            finish()
         }
 
         consLayoutSearch.setOnClickListener {
