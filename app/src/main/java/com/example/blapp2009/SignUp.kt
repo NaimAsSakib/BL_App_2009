@@ -125,7 +125,7 @@ class SignUp : AppCompatActivity() {
 
         databaseReference= FirebaseDatabase.getInstance().getReference("Users")
 
-        val user=User(userId, userEmail, name, bloodgroup, location, occupation, organization, number1, userStatus, section)
+        val user=User(userId, userEmail, name, bloodgroup, location, occupation, organization, number1, userStatus, section,"")
 
         //userID er reference a shob details save hobe
         databaseReference.child(userId).setValue(user).addOnSuccessListener {

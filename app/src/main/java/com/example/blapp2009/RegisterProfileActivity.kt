@@ -2,6 +2,7 @@ package com.example.blapp2009
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.text.trimmedLength
 import androidx.core.widget.doBeforeTextChanged
 import androidx.core.widget.doOnTextChanged
@@ -26,6 +28,9 @@ class RegisterProfileActivity : AppCompatActivity() {
     private lateinit var name: String
     private lateinit var userId: String
     private lateinit var userEmail: String
+
+    private lateinit var firebaseAuth: FirebaseAuth  //firebase authentication
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +49,13 @@ class RegisterProfileActivity : AppCompatActivity() {
             }
         }*/
 
-        //getting userId from shared preference saved in Login act
+      /*  //getting userId from shared preference saved in Login act
         val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-        userId= sharedPreference.getString("userid","defaultName").toString()
+        userId= sharedPreference.getString("userid","defaultName").toString()*/
+
+        //getting current user Id from firebase authentication to load data through this userId
+        firebaseAuth= FirebaseAuth.getInstance()
+        userId=firebaseAuth.currentUser?.uid!!
         Log.e(" passed userid", "userid "+userId)
 
         //method for fetching profile details with userId from realtime database
@@ -96,14 +105,10 @@ class RegisterProfileActivity : AppCompatActivity() {
         val userStatus="true"
         val section="Not needed now"
 
-        /*val intent = intent
-        val userEmail= intent.getStringExtra("userEmailFromSignUp").toString()
-        */
-
         databaseReference=FirebaseDatabase.getInstance().getReference("Users")
 
         //overriding those values in this particular userId got from shared pref from Login act
-        val user=User(userId, userEmail, name, bloodgroup, location, occupation, organization, number1,userStatus,section)
+        val user=User(userId, userEmail, name, bloodgroup, location, occupation, organization, number1,userStatus,section,"")
 
         if (userId != null) {
             databaseReference.child(userId).setValue(user).addOnSuccessListener {
@@ -127,6 +132,7 @@ class RegisterProfileActivity : AppCompatActivity() {
             }
         }
     }
+
 
     //method for fetching profile details with userId from realtime database
     private fun loadSavedProfileDetails(){
