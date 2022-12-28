@@ -5,14 +5,23 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.blapp2009.databinding.ActivityRegisterProfileBinding
 import com.example.blapp2009.databinding.ActivityUserDetailsBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class UserDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserDetailsBinding
+
+    //for getting profile image from firebase storage
+    private var firebaseAuth: FirebaseAuth?= null
+    private var firebaseStorage: FirebaseStorage?=null
+    private var storageReference: StorageReference?= null
 
 
     @SuppressLint("SetTextI18n")
@@ -37,6 +46,10 @@ class UserDetailsActivity : AppCompatActivity() {
         val organization= intent.getStringExtra("userOrganizationFromLandingAdapter").toString()
 
         val userEmail= intent.getStringExtra("userEmailFromLandingAdapter").toString()
+        val profileImageUrl= intent.getStringExtra("profileImageUrlFromLandingAdapter").toString()
+        val userId= intent.getStringExtra("userIdFromLandingAdapter").toString()
+       // Log.e("image url","userid "+userId)
+
 
         binding.tvUserDetailsUserName.text=name
 
@@ -63,6 +76,31 @@ class UserDetailsActivity : AppCompatActivity() {
             binding.tvUserDetailsEmailAddress.text="Not available"
         }else { binding.tvUserDetailsEmailAddress.text=userEmail }
 
+        //condition if profileImageUrl is empty or not, empty means user didn't upload any profile photo, !empty means profile photo exist
+        if(profileImageUrl.isEmpty()){
+            Glide.with(this)
+                .load(R.drawable.profile_image)
+                .into(binding.ivProfileImageUserDetails)
+            //Toast.makeText(this, "pic url empty", Toast.LENGTH_SHORT).show()
+
+        }else{
+            //load the previously saved profile photo by the reference of 'userId', from firebase Storage
+            firebaseAuth= FirebaseAuth.getInstance()
+            firebaseStorage= FirebaseStorage.getInstance()
+            storageReference=firebaseStorage!!.reference
+
+            storageReference!!.child("image")
+                .child(userId).child(name)
+                .downloadUrl.addOnSuccessListener {
+
+                    Glide.with(this)
+                        .load(it)
+                        .error(R.drawable.profile_image)
+                        .into(binding.ivProfileImageUserDetails)
+                }
+
+        }
+
 
         //calling mechanism
         binding.cardViewCallUserDetails.setOnClickListener {
@@ -74,8 +112,6 @@ class UserDetailsActivity : AppCompatActivity() {
                 Toast.makeText(this, "Mobile number not given", Toast.LENGTH_SHORT).show()
             }
         }
-
-
 
     }
 

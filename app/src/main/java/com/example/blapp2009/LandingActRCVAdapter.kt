@@ -47,6 +47,8 @@ class LandingActRCVAdapter(private val userLists: ArrayList<User>) :
         val occupation=item.occupation
         val organization=item.organization
         val userEmail= item.userEmail
+        val profileImageUrl= item.imageUrl
+        val userId=item.userId
 
         val context= holder.bloodgroup.context  //for bringing context in adapter class
 
@@ -60,6 +62,9 @@ class LandingActRCVAdapter(private val userLists: ArrayList<User>) :
             intent.putExtra("userOccupationFromLandingAdapter",occupation)
             intent.putExtra("userOrganizationFromLandingAdapter",organization)
             intent.putExtra("userEmailFromLandingAdapter",userEmail)
+            intent.putExtra("profileImageUrlFromLandingAdapter",profileImageUrl)
+            intent.putExtra("userIdFromLandingAdapter",userId)
+
             context.startActivity(intent)
         }
 
