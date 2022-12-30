@@ -18,6 +18,7 @@
             android:id="@+id/ivProfile"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/profile_image"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
