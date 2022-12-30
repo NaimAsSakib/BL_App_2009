@@ -23,6 +23,8 @@ class UserDetailsActivity : AppCompatActivity() {
     private var firebaseStorage: FirebaseStorage?=null
     private var storageReference: StorageReference?= null
 
+    private lateinit var progressBarDialog: LoadingProgressBarDialog
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +32,9 @@ class UserDetailsActivity : AppCompatActivity() {
        // setContentView(R.layout.activity_user_details)
         binding= ActivityUserDetailsBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+
+        progressBarDialog= LoadingProgressBarDialog(this)
+
 
         binding.ivBackArrow.setOnClickListener {
             val intent = Intent(this, LandingActivity::class.java)
@@ -85,6 +90,8 @@ class UserDetailsActivity : AppCompatActivity() {
 
         }else{
             //load the previously saved profile photo by the reference of 'userId', from firebase Storage
+            progressBarDialog.startProgressBarLoading()
+
             firebaseAuth= FirebaseAuth.getInstance()
             firebaseStorage= FirebaseStorage.getInstance()
             storageReference=firebaseStorage!!.reference
@@ -97,6 +104,8 @@ class UserDetailsActivity : AppCompatActivity() {
                         .load(it)
                         .error(R.drawable.profile_image)
                         .into(binding.ivProfileImageUserDetails)
+
+                    progressBarDialog.dismissProgressBarDialog()
                 }
 
         }

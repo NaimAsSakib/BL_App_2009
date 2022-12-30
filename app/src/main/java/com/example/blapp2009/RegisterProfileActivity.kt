@@ -44,11 +44,15 @@ class RegisterProfileActivity : AppCompatActivity() {
     private var PICK_IMAGE_REQUEST = 12
     private var imagePath: Uri? = null
 
+    private lateinit var progressBarDialog: LoadingProgressBarDialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.activity_register_profile) //muted this for viewBinding() functionality
         binding = ActivityRegisterProfileBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+
+        progressBarDialog= LoadingProgressBarDialog(this)
 
         /* //Checking whether user entered an name or not & controlling button visibility accordingly
          binding.etRegisterName.doOnTextChanged { text, start, before, count ->
@@ -164,6 +168,8 @@ class RegisterProfileActivity : AppCompatActivity() {
 
     //method for fetching profile details with userId from realtime database
     private fun loadSavedProfileDetails() {
+        progressBarDialog.startProgressBarLoading()   //progressbar dialog
+
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
 
         databaseReference.child(userId).get().addOnSuccessListener {
@@ -201,6 +207,7 @@ class RegisterProfileActivity : AppCompatActivity() {
             }
         }
 
+        progressBarDialog.dismissProgressBarDialog()
     }
 
     //method to choose image from user device, to select profile picture
