@@ -44,10 +44,8 @@ class RegisterProfileActivity : AppCompatActivity() {
     private var PICK_IMAGE_REQUEST = 12
     private var imagePath: Uri? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //viewBinding() functionality
         // setContentView(R.layout.activity_register_profile) //muted this for viewBinding() functionality
         binding = ActivityRegisterProfileBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
@@ -66,59 +64,50 @@ class RegisterProfileActivity : AppCompatActivity() {
           val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
           userId= sharedPreference.getString("userid","defaultName").toString()*/
 
+
         //getting current user Id from firebase authentication to load data through this userId
         firebaseAuth = FirebaseAuth.getInstance()
         userId = firebaseAuth.currentUser?.uid!!
         Log.e(" passed userid", "userid " + userId)
 
-        //method for fetching profile details with userId from realtime database
-        loadSavedProfileDetails()
-
-        //for uploading image to firebase storage
+        //for uploading & loading image to firebase storage
         firebaseStorage = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
 
-        binding.ivProfile.setOnClickListener {
 
+        //method for fetching profile details with userId from realtime database
+        loadSavedProfileDetails()
+
+
+        //for choosing profile image
+        binding.linearLayoutChangeProfile.setOnClickListener {
             fileChooser()
         }
 
+        //for uploading profile details
         binding.btnUpdate.setOnClickListener {
-
             uploadProfileDetails()
         }
 
     }
 
-    //method for updating/uploading user profile details to realtime database
+
+    //method for uploading user profile details to realtime database
     private fun uploadProfileDetails() {
 
-        //code for making every 1st letter of every words uppercase present in 'name' for uploading in database
+        //code for making every 1st letter of every words uppercase present in 'etRegisterName' for uploading in database
         val strName = binding.etRegisterName.text.toString()
-        val words = strName.split(" ").toMutableList()
-        name = ""
-        for (word in words) {
-            name += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } + " "
-        }
-        name = name.trim()
+        name= makeFirstLetterCapital(strName)  //method described below
 
-        //code for making every 1st letter of every words uppercase present in 'location' for uploading in database
+
+        //code for making every 1st letter of every words uppercase present in 'etRegisterLocation' for uploading in database
         val locationStr = binding.etRegisterLocation.text.toString()
-        val wordsLocation = locationStr.split(" ").toMutableList()
-        var location = ""
-        for (word in wordsLocation) {
-            location += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } + " "
-        }
-        location = location.trim()
+       val location= makeFirstLetterCapital(locationStr)  //method described below
 
-        //code for making every 1st letter of every words uppercase present in 'occupation' for uploading in database
+        //code for making every 1st letter of every words uppercase present in 'etRegisterOccupation' for uploading in database
         val occupationStr = binding.etRegisterOccupation.text.toString()
-        val wordsOccupation = occupationStr.split(" ").toMutableList()
-        var occupation = ""
-        for (word in wordsOccupation) {
-            occupation += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } + " "
-        }
-        occupation = occupation.trim()
+        val occupation= makeFirstLetterCapital(occupationStr)  //method described below
+
 
         //code for making every 1st letter of every words uppercase present in 'organization' for uploading in database
         val organization = binding.etRegisterOrganization.text.toString()
@@ -135,6 +124,9 @@ class RegisterProfileActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
         //overriding those values for current userId got from firebase
         val user = User(userId, userEmail, name, bloodgroup, location, occupation, organization, number1, userStatus, section, imageUrl )
+         Log.e("upload image","image url  "+imageUrl)
+
+
 
         if (userId != null) {
             databaseReference.child(userId).setValue(user).addOnSuccessListener {
@@ -159,6 +151,16 @@ class RegisterProfileActivity : AppCompatActivity() {
         }
     }
 
+    //for making every 1st letter of every words uppercase present in a sentence
+    private fun makeFirstLetterCapital(str:String): String{
+        val words = str.split(" ").toMutableList()
+        var editedStr = ""
+        for (word in words) {
+            editedStr += word.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } + " "
+        }
+        return editedStr.trim()
+    }
+
 
     //method for fetching profile details with userId from realtime database
     private fun loadSavedProfileDetails() {
@@ -174,6 +176,7 @@ class RegisterProfileActivity : AppCompatActivity() {
                 var savedNumber1 = it.child("number1").value.toString()
                 userEmail = it.child("userEmail").value.toString()
 
+                imageUrl=it.child("imageUrl").value.toString()  //important for image upload & download
 
                 binding.etRegisterName.setText(savedName)
                 binding.etRegisterBloodGroup.setText(savedBloodgroup)
@@ -182,8 +185,22 @@ class RegisterProfileActivity : AppCompatActivity() {
                 binding.etRegisterOrganization.setText(savedOrganization)
                 binding.etRegisterMobile1.setText(savedNumber1)
 
+
+                if (imageUrl.isNotEmpty()){  //means imageUrl has valid image url; user uploaded a image previously, So I am downloading now
+                    Glide.with(this)
+                        .load(imageUrl)
+                        .error(R.drawable.profile_image)
+                        .into(binding.ivProfile)
+                }else{                      //means it has no image url; user didn't upload any image previously,So I am setting an image
+                    Glide.with(this)
+                        .load(R.drawable.profile_image)
+                        .into(binding.ivProfile)
+                }
+
+
             }
         }
+
     }
 
     //method to choose image from user device, to select profile picture
@@ -196,25 +213,26 @@ class RegisterProfileActivity : AppCompatActivity() {
 
     //method for uploading selected profile image to firebase storage
     private fun uploadImageToFirebaseStorage() {
-        if (imagePath != null) {
+        if (imagePath != null) {  //means user is changing profile picture now,
             val imageRef = storageReference!!.child("image")
-                .child(firebaseAuth!!.uid!!).child(name)
-            val uploadImage = imageRef.putFile(imagePath!!)  //problem here with imagePath
+                .child(firebaseAuth!!.uid!!)
+            val uploadImage = imageRef.putFile(imagePath!!)
 
             uploadImage.addOnFailureListener {
                 Toast.makeText(this, "Error occurred!!", Toast.LENGTH_SHORT).show()
             }
+            imageUrl = imagePath.toString()  //it becomes valid when new image is selected while editing coz imagePath exists
+
         } else {
-            Toast.makeText(this, "No profile image selected", Toast.LENGTH_SHORT)
-                .show()   //for handling null pointer error
+            // imagePath is null here. means user is editing his profile but not selected new image, so previous image should be uploaded again
+                // So, assigning previous imageUrl to imagePath while imagePath is null. converted imageUrl in Uri type, as imagePath is Uri type.
+
+            imagePath= Uri.parse(imageUrl)
+
+            Log.e("upload image","imageUrl when imagePath is null "+imageUrl)  //imageUrl here remains exactly same as previously uploaded image as I loaded
+            //imageUrl from realtime database in loadSavedProfileDetails()
         }
 
-        //used if condition coz, when user doesn't select any image to upload, imagePath is null, so imageUrl will be null
-        if (imagePath == null) {
-            imageUrl = ""
-        } else {
-            imageUrl = imagePath.toString()
-        }
     }
 
     //this method is also overridden for profile image selection & upload purpose

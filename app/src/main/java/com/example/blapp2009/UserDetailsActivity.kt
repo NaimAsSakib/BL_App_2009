@@ -90,7 +90,7 @@ class UserDetailsActivity : AppCompatActivity() {
             storageReference=firebaseStorage!!.reference
 
             storageReference!!.child("image")
-                .child(userId).child(name)
+                .child(userId)
                 .downloadUrl.addOnSuccessListener {
 
                     Glide.with(this)
