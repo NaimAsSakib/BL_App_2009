@@ -63,12 +63,11 @@
                 android:id="@+id/etSignUpEmail"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:padding="1.5dp"
                 android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -89,15 +88,15 @@
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
             app:hintTextColor="#141c44"
-            app:endIconMode="password_toggle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail">
+            app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmail"
+            app:passwordToggleEnabled="true">
 
             <EditText
                 android:id="@+id/etSignUpPassword"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:padding="1.5dp"
                 android:textStyle="bold" />
 
@@ -120,8 +119,8 @@
 
             app:boxStrokeColor="#536DFE"
             app:boxStrokeWidth="2dp"
+            app:passwordToggleEnabled="true"
             app:hintTextColor="#141c44"
-            app:endIconMode="password_toggle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutSignUpPassword">
 
@@ -129,7 +128,7 @@
                 android:id="@+id/etSignUpConfirmPassword"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:padding="1.5dp"
                 android:textStyle="bold" />
 
@@ -205,10 +204,10 @@
             android:layout_marginTop="20dp"
             android:background="#00B0FF"
             android:text="     Get Started    "
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@id/textInputLayoutSignUpSection"
             app:layout_constraintStart_toStartOf="@id/textInputLayoutSignUpSection"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutSignUpSection" />
@@ -217,14 +216,14 @@
             android:id="@+id/tv3_SignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Already have an account? "
             android:layout_marginTop="10dp"
+            android:text=" Already have an account? "
             android:textColor="#536DFE"
             android:textSize="18sp"
             android:textStyle="normal"
-            app:layout_constraintTop_toBottomOf="@id/btnSignUp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -232,10 +231,10 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="90dp"
-        android:src="@drawable/ic_wave"
         android:scaleType="centerCrop"
+        android:src="@drawable/ic_wave"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
