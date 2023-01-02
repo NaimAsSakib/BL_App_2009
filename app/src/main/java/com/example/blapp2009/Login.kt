@@ -136,9 +136,13 @@ class Login : AppCompatActivity() {
         databaseReference.child(currentUserId).get().addOnSuccessListener {
             if (it.exists()) {
                 userStatus = it.child("userStatus").value.toString()
+
+                val userName=it.child("name").value.toString() //this is only for future use
+
                 if (userStatus == "true") {
 
                     val intent = Intent(this, LandingActivity::class.java)
+                    intent.putExtra("userNameFromSignUpAct",userName)
                     startActivity(intent)
                     finish()
                 } else {

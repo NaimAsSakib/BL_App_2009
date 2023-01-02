@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -20,6 +21,8 @@ import java.util.*
 class LandingActivity : AppCompatActivity() {
     private lateinit var ivHamburger: ImageView
     private lateinit var drawerLayout: DrawerLayout
+
+    private lateinit var userNameDrawerLayout:TextView  //for showing userName in navigation view
 
     private lateinit var consLayoutEditProfile: ConstraintLayout
     private lateinit var consLayoutChangePassword: ConstraintLayout
@@ -57,6 +60,7 @@ class LandingActivity : AppCompatActivity() {
 
 
         //Navigation Drawer purpose
+        userNameDrawerLayout=findViewById(R.id.tvUserNameNavigationView)
         consLayoutEditProfile=findViewById(R.id.consProfile)
         consLayoutChangePassword=findViewById(R.id.consPassword)
         consLayoutSearch=findViewById(R.id.consFilter)
@@ -70,6 +74,18 @@ class LandingActivity : AppCompatActivity() {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
+        //getting passed userName from LoginActivity or RegisterProfileActivity to show in navigation view
+        val intent=intent
+        val passedUserNameFromLoginAct=intent.getStringExtra("userNameFromSignUpAct")
+        val passedUserNameFromRegisterAct=intent.getStringExtra("EditedUserNameFromRegisterAct")
+
+        //condition for checking normal userName from LoginAct or edited userName from RegisterProfileAct
+        if (!passedUserNameFromLoginAct.isNullOrEmpty()){
+            userNameDrawerLayout.text= passedUserNameFromLoginAct
+
+        }else{
+            userNameDrawerLayout.text= passedUserNameFromRegisterAct
+        }
 
         consLayoutEditProfile.setOnClickListener {
 

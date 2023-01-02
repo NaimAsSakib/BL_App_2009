@@ -88,9 +88,14 @@ class RegisterProfileActivity : AppCompatActivity() {
             fileChooser()
         }
 
-        //for uploading profile details
+        //for uploading profile details only if name field is not empty
         binding.btnUpdate.setOnClickListener {
-            uploadProfileDetails()
+            if (binding.etRegisterName.text.isNotEmpty()) {
+
+                uploadProfileDetails()
+            }else{
+                Toast.makeText(this,"Please enter your name",Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
@@ -146,6 +151,7 @@ class RegisterProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, "Successfully saved to database", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, LandingActivity::class.java)
+                intent.putExtra("EditedUserNameFromRegisterAct",name)
                 startActivity(intent)
                 finish()
 
