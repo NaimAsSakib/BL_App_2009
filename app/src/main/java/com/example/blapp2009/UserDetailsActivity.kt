@@ -108,6 +108,12 @@ class UserDetailsActivity : AppCompatActivity() {
                     progressBarDialog.dismissProgressBarDialog()
                 }
 
+            binding.ivProfileImageUserDetails.setOnClickListener {
+
+                val intent = Intent(this, LargeProfilePhotoActivity::class.java)
+                intent.putExtra("userIdFromUserDetailsAct", userId)
+                startActivity(intent)
+            }
         }
 
 
