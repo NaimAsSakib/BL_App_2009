@@ -7,6 +7,20 @@
     android:padding="15dp"
     tools:context=".FilteredOutputActivity">
 
+    <TextView
+        android:id="@+id/tvFilteredOutputAct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="#536DFE"
+        android:text="No user found"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvFilteredOutputAct"
         android:layout_width="match_parent"

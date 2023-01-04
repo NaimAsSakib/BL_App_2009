@@ -1,8 +1,11 @@
 package com.example.blapp2009
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,9 +22,13 @@ class FilteredOutputActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<User>
 
+    private lateinit var tvUserNotFound:TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filtered_output)
+
+        tvUserNotFound=findViewById(R.id.tvFilteredOutputAct)
 
         //getting value from FragFilterName
         val intent = intent
@@ -78,7 +85,9 @@ class FilteredOutputActivity : AppCompatActivity() {
                         recyclerView.adapter=LandingActRCVAdapter(userArrayList) //using the same LandingActRCVAdapter again here
 
                     }else{
-                        Toast.makeText(this@FilteredOutputActivity, "No user found",Toast.LENGTH_SHORT).show()
+                        //when user is not found
+                        recyclerView.visibility=View.GONE
+                        tvUserNotFound.visibility=View.VISIBLE
                     }
 
                     //Log.e("Landing act"," arrayList size "+userArrayList.size)
