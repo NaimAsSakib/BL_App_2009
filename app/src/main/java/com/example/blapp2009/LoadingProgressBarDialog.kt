@@ -5,7 +5,6 @@ import android.app.AlertDialog
 
 class LoadingProgressBarDialog(private val activity: Activity) {
 
-    // private val activity: Activity? = null
     private var alertDialog: AlertDialog? = null
 
     fun startProgressBarLoading() {
