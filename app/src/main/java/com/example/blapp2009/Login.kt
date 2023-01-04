@@ -3,6 +3,7 @@ package com.example.blapp2009
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -52,7 +53,18 @@ class Login : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()  //firebase authentication
 
         btnLogin.setOnClickListener {
-            login()  //method is described bottom of this activity
+
+            //checking internet connection with ConnectivityManager
+            val conMgr = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+            val netInfo = conMgr.activeNetworkInfo
+            if (netInfo == null) {   //means internet is off in mobile
+
+                Toast.makeText(this, "Please check your internet connection", Toast.LENGTH_SHORT).show()
+
+            }else{   //means internet is on in the device, so call data from server
+
+                login()  //method is described bottom of this activity
+            }
         }
 
         // code for showing alertdialog & sending password reset link to given Email to reset password
