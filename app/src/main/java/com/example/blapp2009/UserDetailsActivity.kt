@@ -106,6 +106,7 @@ class UserDetailsActivity : AppCompatActivity() {
                     progressBarDialog.dismissProgressBarDialog()
                 }
 
+            //make image large when clicked
             binding.ivProfileImageUserDetails.setOnClickListener {
 
                 val intent = Intent(this, LargeProfilePhotoActivity::class.java)
