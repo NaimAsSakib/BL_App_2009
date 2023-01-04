@@ -17,9 +17,8 @@ class FilterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.ivBackFilterAct.setOnClickListener {
-            val intentLanding= Intent(this, LandingActivity::class.java)
-            startActivity(intentLanding)
-            finish()
+
+            onBackPressed()
         }
         //opening fragments
         binding.cardView1.setOnClickListener { openFragment(FragFilterName()) }

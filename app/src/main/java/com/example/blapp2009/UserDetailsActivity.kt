@@ -37,9 +37,7 @@ class UserDetailsActivity : AppCompatActivity() {
 
 
         binding.ivBackArrow.setOnClickListener {
-            val intent = Intent(this, LandingActivity::class.java)
-            startActivity(intent)
-            finish()
+            onBackPressed()
         }
 
         val intent = intent
@@ -130,10 +128,4 @@ class UserDetailsActivity : AppCompatActivity() {
 
     }
 
-    override fun onBackPressed() {
-       super.onBackPressed()
-        /*val intent = Intent(this, LandingActivity::class.java)
-        startActivity(intent)
-        finish()*/
-    }
 }

@@ -92,10 +92,4 @@ class FilteredOutputActivity : AppCompatActivity() {
         })
     }
 
-    override fun onBackPressed() {
-        // super.onBackPressed()
-       /* val intent = Intent(this, LandingActivity::class.java)
-        startActivity(intent)*/
-        finish()
-    }
 }
