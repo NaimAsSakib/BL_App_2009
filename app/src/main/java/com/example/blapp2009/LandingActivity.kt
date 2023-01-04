@@ -91,7 +91,7 @@ class LandingActivity : AppCompatActivity() {
 
             val intent= Intent(this, RegisterProfileActivity::class.java)
             startActivity(intent)
-            finish()
+
             drawerLayout.closeDrawer(GravityCompat.START)
         }
 
