@@ -67,10 +67,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingStart="15dp"
-            android:paddingBottom="95dp"
             android:layout_marginTop="15dp"
             app:layout_constraintTop_toBottomOf="@id/view"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/custom_rcv_bloodgroup_contactlist">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -83,7 +83,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <include layout="@layout/navigation_drawer_layout" />
 
