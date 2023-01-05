@@ -44,6 +44,10 @@ class FragmentChangePassword : Fragment() {
             changePassword()
         }
 
+        btnCancel.setOnClickListener {
+            activity?.onBackPressed()
+        }
+
 
         return view
     }
