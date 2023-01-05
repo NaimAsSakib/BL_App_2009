@@ -92,6 +92,7 @@ class LandingActivity : AppCompatActivity() {
 
             val intent= Intent(this, RegisterProfileActivity::class.java)
             startActivity(intent)
+            finish()
 
             drawerLayout.closeDrawer(GravityCompat.START)
         }
@@ -116,6 +117,7 @@ class LandingActivity : AppCompatActivity() {
         consLayoutLogout.setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
             Firebase.auth.signOut()
+            //clearing all saved shared pref value
             val sharedPreference =  getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
             var editor = sharedPreference.edit()
             editor.clear()
