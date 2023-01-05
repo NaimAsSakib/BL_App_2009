@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
@@ -96,11 +97,9 @@ class LandingActivity : AppCompatActivity() {
         }
 
         consLayoutChangePassword.setOnClickListener {
-            val intentChangePassword= Intent(this, Login::class.java)
-            startActivity(intentChangePassword)
-            Toast.makeText(this, "Click on Forgot Password", Toast.LENGTH_SHORT).show()
             drawerLayout.closeDrawer(GravityCompat.START)
-            finish()
+            openFragment(FragmentChangePassword())   //opening change password fragment
+
         }
 
         consLayoutSearch.setOnClickListener {
@@ -163,5 +162,11 @@ class LandingActivity : AppCompatActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    //method for opening fragments
+    private fun openFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerLandingAct, fragment)
+            .addToBackStack(null).commit()
     }
 }

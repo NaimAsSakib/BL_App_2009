@@ -76,6 +76,15 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
+        <FrameLayout
+            android:id="@+id/fragmentContainerLandingAct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="29dp">
+
+        </FrameLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -89,5 +98,7 @@
         <include layout="@layout/navigation_drawer_layout" />
 
     </com.google.android.material.navigation.NavigationView>
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
