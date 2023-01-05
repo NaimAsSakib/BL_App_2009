@@ -140,7 +140,13 @@ class LandingActivity : AppCompatActivity() {
                     for (userSnapshot in snapshot.children){
 
                         val user=userSnapshot.getValue(User::class.java)
-                        userArrayList.add(user!!)
+
+                        if (user!= null){
+                            //if condition to show only approved users, whose userStatus is 'true'
+                            if (user.userStatus?.contains("true") == true){
+                                userArrayList.add(user!!)
+                            }
+                        }
 
 
                     }
