@@ -120,10 +120,10 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
 
                 //saving logged in userId in shared pref for future usage in RegisterActivity
-                val sharedPreference = getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+               /* val sharedPreference = getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
                 var editor = sharedPreference.edit()
                 editor.putString("userid", userId)
-                editor.commit()
+                editor.commit()*/
 
                 //method for checking user is really from 09 batch or not, initially while signUp userStatus is 'false' but if
                 // I make userStatus 'true' manually from realtime database, user will see LandingAct then.Searching userStatus through userID
