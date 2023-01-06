@@ -61,9 +61,6 @@ class SignUp : AppCompatActivity() {
        // val email:String = etEmail.text.toString()
         userEmail = etEmail.text.toString()
 
-        val intent=Intent(this, UserDetailsActivity::class.java)
-        intent.putExtra("userEmailFromSignUp",userEmail)
-
         val password:String = etPassword.text.toString()
         val confirmPassword:String = etConfirmPass.text.toString()
         name = etName.text.toString()

@@ -116,7 +116,7 @@ class Login : AppCompatActivity() {
 
                 //getting userId from authentication and saving in shared preference
                 userId = firebaseAuth.currentUser?.uid!!
-                Log.e("uid login", "user id " + userId)
+
                 Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
 
                 //saving logged in userId in shared pref for future usage in RegisterActivity
@@ -149,12 +149,9 @@ class Login : AppCompatActivity() {
             if (it.exists()) {
                 userStatus = it.child("userStatus").value.toString()
 
-                val userName=it.child("name").value.toString() //this is only for future use
-
                 if (userStatus == "true") {
 
                     val intent = Intent(this, LandingActivity::class.java)
-                    intent.putExtra("userNameFromSignUpAct",userName)
                     startActivity(intent)
                     finish()
                 } else {

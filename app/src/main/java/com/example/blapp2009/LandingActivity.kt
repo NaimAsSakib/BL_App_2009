@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
@@ -37,11 +38,14 @@ class LandingActivity : AppCompatActivity() {
     private lateinit var userArrayList: ArrayList<User>
 
     private lateinit var search: ImageView
+    private lateinit var firebaseAuth: FirebaseAuth
+    lateinit var currentUserName:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
          setContentView(R.layout.activity_landing)
+
+        firebaseAuth= FirebaseAuth.getInstance()
 
         //directing to filter activity
         search=findViewById(R.id.ivFilter)
@@ -75,18 +79,7 @@ class LandingActivity : AppCompatActivity() {
             drawerLayout.openDrawer(GravityCompat.START)
         }
 
-        //getting passed userName from LoginActivity or RegisterProfileActivity to show in navigation view
-        val intent=intent
-        val passedUserNameFromLoginAct=intent.getStringExtra("userNameFromSignUpAct")
-        val passedUserNameFromRegisterAct=intent.getStringExtra("EditedUserNameFromRegisterAct")
-
-        //condition for checking normal userName from LoginAct or edited userName from RegisterProfileAct
-        if (!passedUserNameFromLoginAct.isNullOrEmpty()){
-            userNameDrawerLayout.text= passedUserNameFromLoginAct
-
-        }else{
-            userNameDrawerLayout.text= passedUserNameFromRegisterAct
-        }
+        getCurrentUserName()  //method for getting currentUserName from database through currentUserID, which is given below.
 
         consLayoutEditProfile.setOnClickListener {
 
@@ -129,7 +122,7 @@ class LandingActivity : AppCompatActivity() {
     }
 
 
-    //method for fetching registered user data from firebase realtime database
+    //method for fetching all registered users data from firebase realtime database
     private fun getUserData(){
         databaseReference=FirebaseDatabase.getInstance().getReference("Users")
 
@@ -161,6 +154,20 @@ class LandingActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    //method for getting currentUserName from database through currentUserID
+    private fun getCurrentUserName() {
+        val currentUserId=firebaseAuth.currentUser?.uid!!   //getting current userID
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+
+        databaseReference.child(currentUserId).get().addOnSuccessListener {
+            if(it.exists()){
+                currentUserName=it.child("name").value.toString()  //getting userName
+                userNameDrawerLayout.text=currentUserName   //setting userName to Navigation drawer
+            }
+        }
     }
 
     override fun onBackPressed() {

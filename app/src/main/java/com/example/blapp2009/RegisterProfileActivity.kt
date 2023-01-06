@@ -133,7 +133,7 @@ class RegisterProfileActivity : AppCompatActivity() {
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
         //overriding those values for current userId got from firebase
         val user = User(userId, userEmail, name, bloodgroup, location, occupation, organization, number1, userStatus, section, imageUrl )
-         Log.e("upload image","image url  "+imageUrl)
+         //Log.e("upload image","image url  "+imageUrl)
 
 
 
@@ -151,7 +151,6 @@ class RegisterProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, "Successfully saved to database", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, LandingActivity::class.java)
-                intent.putExtra("EditedUserNameFromRegisterAct",name)
                 startActivity(intent)
                 finish()
 
