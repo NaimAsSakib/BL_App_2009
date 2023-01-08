@@ -1,12 +1,10 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
@@ -18,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import com.bl09.blapp2009.R
 import java.util.*
 
 class LandingActivity : AppCompatActivity() {

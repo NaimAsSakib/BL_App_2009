@@ -1,14 +1,12 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
-import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bl09.blapp2009.R
 
 class FragFilterBloodRCVAdapter(private val bloodGroupArrayList: ArrayList<String>, private val onClickListener: ItemOnClickListener):
 RecyclerView.Adapter<FragFilterBloodRCVAdapter.MyViewHolder>() {

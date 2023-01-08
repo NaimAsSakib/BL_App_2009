@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.blapp2009">
+    package="com.bl09.blapp2009">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,37 +12,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BLApp2009">
         <activity
-            android:name=".LargeProfilePhotoActivity"
+            android:name="com.bl09.blapp2009.LargeProfilePhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".UserDetailsActivity"
+            android:name="com.bl09.blapp2009.UserDetailsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".FilteredOutputActivity"
+            android:name="com.bl09.blapp2009.FilteredOutputActivity"
             android:exported="false" />
         <activity
-            android:name=".FilterActivity"
+            android:name="com.bl09.blapp2009.FilterActivity"
             android:exported="false" />
         <activity
-            android:name=".CheckUserStatusActivity"
+            android:name="com.bl09.blapp2009.CheckUserStatusActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterProfileActivity"
+            android:name="com.bl09.blapp2009.RegisterProfileActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".LandingActivity"
+            android:name="com.bl09.blapp2009.LandingActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUp"
+            android:name="com.bl09.blapp2009.SignUp"
             android:exported="false"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".Login"
+            android:name="com.bl09.blapp2009.Login"
             android:exported="false" />
         <activity
-            android:name=".LoginIntro"
+            android:name="com.bl09.blapp2009.LoginIntro"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,7 +1,8 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
 import android.app.Activity
 import android.app.AlertDialog
+import com.bl09.blapp2009.R
 
 class LoadingProgressBarDialog(private val activity: Activity) {
 

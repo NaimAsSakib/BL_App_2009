@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".RegisterProfileActivity">
+    tools:context="com.bl09.blapp2009.RegisterProfileActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

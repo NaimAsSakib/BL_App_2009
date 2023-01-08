@@ -1,4 +1,4 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
 data class User(var userId: String?=null, var userEmail: String?=null ,var name: String?=null, var bloodgroup: String?=null,
                 var location: String?=null, var occupation: String?=null, var organization: String?=null,

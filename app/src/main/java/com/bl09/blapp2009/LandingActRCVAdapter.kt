@@ -1,4 +1,4 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
 import android.content.Intent
 import android.net.Uri
@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.bl09.blapp2009.R
 import java.util.*
 
 class LandingActRCVAdapter(private val userLists: ArrayList<User>) :

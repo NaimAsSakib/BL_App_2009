@@ -1,20 +1,13 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
-import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.bl09.blapp2009.databinding.ActivityLargeProfilePhotoBinding
 import com.bumptech.glide.Glide
-import com.example.blapp2009.databinding.ActivityLargeProfilePhotoBinding
-import com.example.blapp2009.databinding.ActivityUserDetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.io.File
-import java.net.URI
 
 class LargeProfilePhotoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLargeProfilePhotoBinding

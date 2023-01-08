@@ -8,8 +8,7 @@
     android:paddingStart="34dp"
     android:paddingEnd="33dp"
     android:paddingTop="40dp"
-    android:paddingBottom="15dp"
-    tools:context=".FragFilterLocation">
+    android:paddingBottom="15dp">
 
     <TextView
         android:id="@+id/tvFragFilterLocation"

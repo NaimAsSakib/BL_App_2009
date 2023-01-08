@@ -1,8 +1,9 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
 
 class CheckUserStatusActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
 import org.junit.Test
 

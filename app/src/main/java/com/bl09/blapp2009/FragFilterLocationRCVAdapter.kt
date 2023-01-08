@@ -1,12 +1,12 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bl09.blapp2009.R
 
 class FragFilterLocationRCVAdapter(private val userLocationLists: ArrayList<String>, private val onClickListener: ItemOnClickListener) :
     RecyclerView.Adapter<FragFilterLocationRCVAdapter.MyViewHolder>() {

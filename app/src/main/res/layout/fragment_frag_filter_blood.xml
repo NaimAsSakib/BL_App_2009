@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    android:paddingTop="40dp"
-    tools:context=".FragFilterBlood">
+    android:paddingTop="40dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvFragmentFilterBloodGroup"

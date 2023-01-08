@@ -1,4 +1,4 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import java.util.ArrayList
+import com.bl09.blapp2009.R
+
 
 
 class FragFilterLocation : Fragment(), ItemOnClickListener {

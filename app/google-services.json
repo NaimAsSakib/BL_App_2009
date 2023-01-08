@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "202493470148",
+    "firebase_url": "https://bl-app-2009-default-rtdb.firebaseio.com",
     "project_id": "bl-app-2009",
     "storage_bucket": "bl-app-2009.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:202493470148:android:4e96af96ffd548d5193091",
+        "mobilesdk_app_id": "1:202493470148:android:0f246e373074a7d8193091",
         "android_client_info": {
-          "package_name": "com.example.blapp2009"
+          "package_name": "com.bl09.blapp2009"
         }
       },
       "oauth_client": [

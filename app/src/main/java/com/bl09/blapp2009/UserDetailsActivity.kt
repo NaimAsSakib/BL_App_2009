@@ -1,16 +1,15 @@
-package com.example.blapp2009
+package com.bl09.blapp2009
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.blapp2009.databinding.ActivityRegisterProfileBinding
-import com.example.blapp2009.databinding.ActivityUserDetailsBinding
+import com.bl09.blapp2009.R
+import com.bl09.blapp2009.databinding.ActivityUserDetailsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
